@@ -12,7 +12,7 @@ import UIKit
 class HomeViewController: UIViewController, UITextFieldDelegate {
 
     private var movies = [Movie]()
-    private var genres: [Genre]?
+    private var genres = [Genre]()
     
     //var baseApiURL = "https://api.themoviedb.org/3/"
     var apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=d0cb5f9ae1c996d1bd22dc17e287debd"
@@ -49,7 +49,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             //print("ggwp data \(data)")
         }
         APIManager.shared.fetchMovies(url: genreApiURL) { (data: GenreResponse?) in
-            self.genres = data?.genres
+            self.genres = data!.genres!
             DispatchQueue.main.async {
                 self.moviesCollectionView.reloadData()
                 self.categoryCollectionView.reloadData()
@@ -72,6 +72,23 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
 }
 extension HomeViewController: UICollectionViewDataSource{
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       
+        if collectionView == moviesCollectionView{
+            let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
+            
+            let gotoViewController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            let movie = movies[indexPath.row]
+            gotoViewController.movieId = indexPath.row
+            gotoViewController.prepare(movie: movie)
+            navigationController?.pushViewController(gotoViewController, animated: true)
+
+        }else if  collectionView == categoryCollectionView{
+            
+           
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == moviesCollectionView {
@@ -81,17 +98,13 @@ extension HomeViewController: UICollectionViewDataSource{
                 return movies.count
             }
         } else if collectionView == categoryCollectionView {
-            return genres?.count ?? 00
+            return genres.count
         } else {
             return 0
         }
-        
-        /*if searchTextField.text!.isEmpty {
-            return movies?.count ?? 00
-        }
-        return filteredMovies.count*/
     }
-
+  
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         
@@ -107,9 +120,8 @@ extension HomeViewController: UICollectionViewDataSource{
                 let imgFullPath = URL(string: "\(imgUrl + imgPosterPath)")
 
                 cell.movieImageView.loadImg(url: imgFullPath!)
-              
                 filteredMovies[indexPath.row].genreIDS?.forEach{print("ggwp \($0)")}
-              
+                
             }else{
                 cell.movieNameLabel.text = movies[indexPath.row].title
                 cell.movieVoteLabel.text = String(movies[indexPath.row].voteAverage ?? 0.0)
@@ -118,9 +130,21 @@ extension HomeViewController: UICollectionViewDataSource{
                 let imgFullPath = URL(string: "\(imgUrl + imgPosterPath)")
 
                 cell.movieImageView.loadImg(url: imgFullPath!)
-              
+       
+//                let movieGenres = movie?.genreIDS?.compactMap { genreID in
+//                    movies.first { $0.id == genreID}?.id
+//                }
+//                
+//                for movie in movies{
+//                    cell.movieCategoryNameLabel.text = movieGenres
+//                }
+//                if movies[indexPath.row].genreIDS!.contains(genres[indexPath.row].id!){
+//                    cell.movieCategoryNameLabel.text = genres[indexPath.row].name
+//                }
+                
                 movies[indexPath.row].genreIDS?.forEach{print("ggwp \($0)")}
 
+                
             }
            
             return cell
@@ -130,13 +154,11 @@ extension HomeViewController: UICollectionViewDataSource{
                     guard let catecoryCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCollectionViewCell", for: indexPath) as? CategoriesCollectionViewCell else {
                         return UICollectionViewCell()
                     }
-            catecoryCell.categoryNameLabel.text = genres?[indexPath.row].name
+            catecoryCell.categoryNameLabel.text = genres[indexPath.row].name
                     return catecoryCell
                 }
         
         return UICollectionViewCell()
-        
-
     }
 }
 
@@ -158,3 +180,18 @@ extension HomeViewController: UICollectionViewDelegate{
            return true
        }
 }
+
+//extension ViewControllerA: UITableViewDelegate {
+//
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        /// Get the item selected at indexPath row
+//        let movie = Movie.[indexPath.row]
+//
+//        /// Do something with the data @ indexPath.row that user has selected.
+//
+//        let vc = ViewControllerB()
+//        vc.dataItem = i
+//        navigationController?.pushViewController(vc, animated: true)
+//    }
+//}
