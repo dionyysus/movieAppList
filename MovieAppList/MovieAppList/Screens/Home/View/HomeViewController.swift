@@ -130,7 +130,18 @@ extension HomeViewController: UICollectionViewDataSource{
                 let imgFullPath = URL(string: "\(imgUrl + imgPosterPath)")
 
                 cell.movieImageView.loadImg(url: imgFullPath!)
-       
+                
+                
+                for genre in genres {
+//                    print(genre.name)
+                    if ((movies[indexPath.row].genreIDS?.contains(genre.id!)) != nil) {
+                        cell.movieCategoryNameLabel.text = genre.name
+                        print(genre.name ?? "deneme")
+                    }else{
+                        continue
+                    }
+                }
+                
 //                let movieGenres = movie?.genreIDS?.compactMap { genreID in
 //                    movies.first { $0.id == genreID}?.id
 //                }
