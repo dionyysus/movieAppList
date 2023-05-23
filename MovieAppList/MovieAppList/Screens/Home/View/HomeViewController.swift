@@ -14,17 +14,12 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     private var movies = [Movie]()
     private var genres = [Genre]()
     
-    //var baseApiURL = "https://api.themoviedb.org/3/"
-    var apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=d0cb5f9ae1c996d1bd22dc17e287debd"
-    var genreApiURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=d0cb5f9ae1c996d1bd22dc17e287debd"
-    let imgUrl = "http://image.tmdb.org/t/p/w500"
-    
     var searching = false
     var filteredMovies = [Movie]() // Arama sonucu listesi
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var moviesCollectionView: UICollectionView!
-    @IBOutlet var favoriteMoviesCollectionView: UICollectionView!
+    //@IBOutlet var favoriteMoviesCollectionView: UICollectionView!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -40,7 +35,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         categoryCollectionView.delegate = self
         //searchTextField.delegate = self
   
-        APIManager.shared.fetchMovies(url: apiURL) { (data: MovieResponse?) in
+        APIManager.shared.fetchMovies(url: APIManager.shared.apiURL) { (data: MovieResponse?) in
             self.movies = data!.results!
             DispatchQueue.main.async {
                 self.moviesCollectionView.reloadData()
@@ -48,7 +43,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             }
             //print("ggwp data \(data)")
         }
-        APIManager.shared.fetchMovies(url: genreApiURL) { (data: GenreResponse?) in
+        APIManager.shared.fetchMovies(url: APIManager.shared.genreApiURL) { (data: GenreResponse?) in
             self.genres = data!.genres!
             DispatchQueue.main.async {
                 self.moviesCollectionView.reloadData()
@@ -117,7 +112,7 @@ extension HomeViewController: UICollectionViewDataSource{
                 cell.movieVoteLabel.text = String(filteredMovies[indexPath.row].voteAverage ?? 0.0)
 
                 let imgPosterPath = filteredMovies[indexPath.row].posterPath ?? ""
-                let imgFullPath = URL(string: "\(imgUrl + imgPosterPath)")
+                let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
 
                 cell.movieImageView.loadImg(url: imgFullPath!)
                 filteredMovies[indexPath.row].genreIDS?.forEach{print("ggwp \($0)")}
@@ -127,20 +122,19 @@ extension HomeViewController: UICollectionViewDataSource{
                 cell.movieVoteLabel.text = String(movies[indexPath.row].voteAverage ?? 0.0)
 
                 let imgPosterPath = movies[indexPath.row].posterPath ?? ""
-                let imgFullPath = URL(string: "\(imgUrl + imgPosterPath)")
+                let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
 
                 cell.movieImageView.loadImg(url: imgFullPath!)
                 
-                
+                var genreName = ""
                 for genre in genres {
-//                    print(genre.name)
-                    if ((movies[indexPath.row].genreIDS?.contains(genre.id!)) != nil) {
-                        cell.movieCategoryNameLabel.text = genre.name
-                        print(genre.name ?? "deneme")
-                    }else{
-                        continue
+                    if ((movies[indexPath.row].genreIDS?.contains(genre.id!)) == true) {
+                        genreName +=  genre.name ?? ""
+                        genreName += ","
                     }
                 }
+                
+                cell.movieCategoryNameLabel.text = genreName
                 
 //                let movieGenres = movie?.genreIDS?.compactMap { genreID in
 //                    movies.first { $0.id == genreID}?.id

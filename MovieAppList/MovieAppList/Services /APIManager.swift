@@ -12,6 +12,10 @@ class APIManager {
     static let shared = APIManager()
     
     private var favoriteMoviesArray: [Movie] = []
+    
+    var apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=d0cb5f9ae1c996d1bd22dc17e287debd"
+    var genreApiURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=d0cb5f9ae1c996d1bd22dc17e287debd"
+    let imgUrl = "http://image.tmdb.org/t/p/w500"
 
     private init() {}
     
@@ -26,18 +30,6 @@ class APIManager {
             return false
         }
         return true
-          
-//        for item in movie {
-//            if !favoriteMoviesArray.contains(where: {$0.id == item.id}){
-//                favoriteMoviesArray.append(contentsOf: movie)
-//            } else {
-//                if let index = favoriteMoviesArray.firstIndex(where: {$0.id == item.id}) {
-//                    favoriteMoviesArray.remove(at: index)
-//                }
-//                return false
-//            }
-//        }
-        
     }
     
     func getFavoriteMovies() -> [Movie]{
