@@ -89,6 +89,12 @@
                             <blurEffect style="systemMaterialDark"/>
                         </vibrancyEffect>
                     </visualEffectView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart-filled" translatesAutoresizingMaskIntoConstraints="NO" id="1XN-Y4-6RX">
+                        <rect key="frame" x="328" y="8" width="48" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="5U9-ac-EMC"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -96,9 +102,11 @@
                 <constraint firstAttribute="bottom" secondItem="Vhs-AX-FIv" secondAttribute="bottom" constant="8" id="0a7-Uu-usI"/>
                 <constraint firstItem="25H-Bw-fYp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="40a-ZC-yms"/>
                 <constraint firstAttribute="bottom" secondItem="25H-Bw-fYp" secondAttribute="bottom" id="8lo-N1-1Uw"/>
+                <constraint firstItem="1XN-Y4-6RX" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="8xV-2Q-3dH"/>
                 <constraint firstAttribute="trailing" secondItem="Vhs-AX-FIv" secondAttribute="trailing" constant="8" id="Abb-Fi-jTs"/>
                 <constraint firstItem="Vhs-AX-FIv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="qzf-qb-qlV"/>
                 <constraint firstAttribute="trailing" secondItem="25H-Bw-fYp" secondAttribute="trailing" id="srA-Mb-hz0"/>
+                <constraint firstAttribute="trailing" secondItem="1XN-Y4-6RX" secondAttribute="trailing" constant="8" id="vhy-wv-fKD"/>
                 <constraint firstItem="25H-Bw-fYp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="y9D-9f-Oqu"/>
             </constraints>
             <size key="customSize" width="336" height="210"/>
@@ -107,12 +115,14 @@
                 <outlet property="favoriteMovieImageView" destination="25H-Bw-fYp" id="HAw-oW-54x"/>
                 <outlet property="favoriteMovieNameLabel" destination="jiN-OM-bYo" id="4Q4-u9-PTU"/>
                 <outlet property="favoriteVoteLabel" destination="0zw-Cf-L8c" id="zJm-Ps-Nqp"/>
+                <outlet property="movieRemoveFavoritesImageView" destination="1XN-Y4-6RX" id="jPE-63-SAP"/>
             </connections>
-            <point key="canvasLocation" x="442.74809160305341" y="33.802816901408455"/>
+            <point key="canvasLocation" x="423" y="42"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="figure.fall" catalog="system" width="128" height="115"/>
+        <image name="heart-filled" width="48" height="48"/>
         <image name="movie" width="1536" height="864"/>
     </resources>
 </document>

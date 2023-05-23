@@ -53,7 +53,7 @@ class DetailViewController: UIViewController {
     }
   
     @objc private func favoriteTappedImageView() {
-        print("favorite button tapped")
+        //print("favorite button tapped")
         
         if APIManager.shared.setFavoriteMovie(movie: movie!){
             movieFavoriteImageView.image = UIImage(named: Constant.heartFilled )
