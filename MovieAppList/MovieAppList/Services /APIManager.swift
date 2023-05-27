@@ -7,14 +7,17 @@
 
 import Foundation
 
+// movie api: https://api.themoviedb.org/3/discover/movie?api_key=d0cb5f9ae1c996d1bd22dc17e287debd
+
 class APIManager {
 
     static let shared = APIManager()
     
     private var favoriteMoviesArray: [Movie] = []
-    
+    private var categoryMoviesArray: [Movie] = []
+
     var apiURL = "https://api.themoviedb.org/3/discover/movie?api_key=d0cb5f9ae1c996d1bd22dc17e287debd"
-    var genreApiURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=d0cb5f9ae1c996d1bd22dc17e287debd"
+    var genreApiURL =  "https://api.themoviedb.org/3/genre/movie/list?api_key=d0cb5f9ae1c996d1bd22dc17e287debd"
     let imgUrl = "http://image.tmdb.org/t/p/w500"
 
     private init() {}
@@ -32,6 +35,7 @@ class APIManager {
         return true
     }
     
+  
     func getFavoriteMovies() -> [Movie]{
         return favoriteMoviesArray
     }

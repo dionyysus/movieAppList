@@ -32,13 +32,12 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = movie?.title
         
         let tapFavorite = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.favoriteTappedImageView))
-
         
         movieFavoriteImageView.addGestureRecognizer(tapFavorite)
         movieFavoriteImageView.isUserInteractionEnabled = true
-        
         
         navigationController?.navigationBar.topItem?.backButtonTitle = "Back"
         movieDetailNameLabel.text = movie?.title
@@ -53,7 +52,6 @@ class DetailViewController: UIViewController {
     }
   
     @objc private func favoriteTappedImageView() {
-        //print("favorite button tapped")
         
         if APIManager.shared.setFavoriteMovie(movie: movie!){
             movieFavoriteImageView.image = UIImage(named: Constant.heartFilled )

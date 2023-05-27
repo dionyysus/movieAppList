@@ -7,11 +7,30 @@
 
 import UIKit
 
+protocol CategoriesCellDelegate: AnyObject {
+    func labelClicked(indexPath: IndexPath)
+}
+
 class CategoriesCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var categoryNameLabel: UILabel!
-    
     static let identifier = "CategoriesCollectionViewCell"
-  
+
+    @IBOutlet weak var categoryNameLabel: UILabel!
+   
+    weak var delegate: CategoriesCellDelegate?
+    var indexPath: IndexPath?
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(labelClicked))
+        categoryNameLabel.isUserInteractionEnabled = true
+        categoryNameLabel.addGestureRecognizer(tapGesture)
+    }
+    @objc func labelClicked() {
+        guard let indexPath = indexPath else {
+            return
+        }
+        delegate?.labelClicked(indexPath: indexPath)
+    }
     
 }

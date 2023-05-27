@@ -15,7 +15,6 @@ private extension FavoriteMoviesViewController{
 }
 class FavoriteMoviesViewController: UIViewController {
 
-    
     @IBOutlet weak var favoriteMoviesCollectionView: UICollectionView!
     
     var movie: Movie?
@@ -25,6 +24,7 @@ class FavoriteMoviesViewController: UIViewController {
         
         title = "Favorites"
         
+        navigationController?.navigationBar.topItem?.backButtonTitle = "Back"
  
         let nib = UINib(nibName: FavoritesCollectionViewCell.identifier, bundle: nil)
         favoriteMoviesCollectionView.register(nib, forCellWithReuseIdentifier: FavoritesCollectionViewCell.identifier)
@@ -36,7 +36,6 @@ class FavoriteMoviesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         favoriteMoviesCollectionView.reloadData()
     }
-    
 }
 
 extension FavoriteMoviesViewController: UICollectionViewDataSource{
@@ -60,6 +59,7 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
        
         cell.delegate = self
         cell.indexPath = indexPath
+        
         return cell
     }
 }
@@ -71,9 +71,9 @@ extension FavoriteMoviesViewController: FavoritesCellDelegate{
         APIManager.shared.setFavoriteMovie(movie: movie)
         
         favoriteMoviesCollectionView.reloadData()
-        print("ggwp delegate çalışıo \(indexPath.row)")
     }
 }
 
 extension FavoriteMoviesViewController: UICollectionViewDelegate{
+    
 }

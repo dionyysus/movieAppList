@@ -27,9 +27,9 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vhs-AX-FIv">
-                        <rect key="frame" x="8" y="164.33333333333334" width="368" height="61.666666666666657"/>
+                        <rect key="frame" x="8" y="164.66666666666666" width="368" height="61.333333333333343"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="v90-Hd-SMd">
-                            <rect key="frame" x="0.0" y="0.0" width="368" height="62"/>
+                            <rect key="frame" x="0.0" y="0.0" width="368" height="61"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5AC-6C-I26">
@@ -42,7 +42,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="W3N-Et-43I">
-                                            <rect key="frame" x="0.0" y="25.333333333333314" width="236" height="20.333333333333329"/>
+                                            <rect key="frame" x="0.0" y="25.333333333333343" width="236" height="20.333333333333329"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="40R-of-GUR">
                                                     <rect key="frame" x="0.0" y="0.0" width="96.666666666666671" height="20.333333333333332"/>
