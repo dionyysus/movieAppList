@@ -111,7 +111,6 @@ extension HomeViewController: UICollectionViewDataSource{
         }
     }
   
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         

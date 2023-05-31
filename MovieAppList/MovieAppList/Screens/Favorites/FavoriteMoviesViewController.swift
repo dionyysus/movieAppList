@@ -70,10 +70,11 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
             let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
             let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
             let movie = APIManager.shared.getFavoriteMovies()[indexPath.row]
-            let firstGenre = genres?.filter { $0.id == (movie.genreIDS?.first ?? 0) }.first
+            let genre = APIManager.shared.getCategoryMovies()[indexPath.row]
             
             gotoDetailController.movieId = indexPath.row
-            gotoDetailController.prepare(movie: movie, firstGenre: firstGenre  ) // TODO: İsim değiştir
+            gotoDetailController.prepare(movie: movie, firstGenre: genre)
+            print(firstGenre)
             navigationController?.pushViewController(gotoDetailController, animated: true)
 
             return

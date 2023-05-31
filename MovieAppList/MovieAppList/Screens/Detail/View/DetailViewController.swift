@@ -51,12 +51,10 @@ class DetailViewController: UIViewController {
         movieDetailDescriptionLabel.text = movie?.overview
         movieDetailCategoryLabel.text = firstGenre?.name
     }
-    
-    
-  
+
     @objc private func favoriteTappedImageView() {
         
-        if APIManager.shared.setFavoriteMovie(movie: movie!, genre: firstGenre!){
+        if APIManager.shared.setFavoriteMovie(movie: movie! , genre: firstGenre!){
             movieFavoriteImageView.image = UIImage(named: Constant.heartFilled )
         }
         else{
