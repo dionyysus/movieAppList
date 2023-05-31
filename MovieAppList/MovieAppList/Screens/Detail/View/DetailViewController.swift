@@ -25,8 +25,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var movieDetailDescriptionLabel: UILabel!
     
     var movie: Movie?
-    
     var movieId: Int? = 0
+    var firstGenre: Genre?
     
     @IBOutlet weak var movieFavoriteImageView: UIImageView!
     
@@ -49,11 +49,14 @@ class DetailViewController: UIViewController {
         movieDetailImageView.loadImg(url: imgFullPath!)
         
         movieDetailDescriptionLabel.text = movie?.overview
+        movieDetailCategoryLabel.text = firstGenre?.name
     }
+    
+    
   
     @objc private func favoriteTappedImageView() {
         
-        if APIManager.shared.setFavoriteMovie(movie: movie!){
+        if APIManager.shared.setFavoriteMovie(movie: movie!, genre: firstGenre!){
             movieFavoriteImageView.image = UIImage(named: Constant.heartFilled )
         }
         else{
@@ -61,9 +64,10 @@ class DetailViewController: UIViewController {
         }
     }
   
-    func prepare(movie: Movie) {
+    func prepare(movie: Movie, firstGenre: Genre?) {
         self.movie = movie
+        self.firstGenre = firstGenre
     }
-   
+    
 }
 

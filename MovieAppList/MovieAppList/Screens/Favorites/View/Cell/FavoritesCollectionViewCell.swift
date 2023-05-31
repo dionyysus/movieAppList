@@ -37,5 +37,4 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         }
         delegate?.imageViewClicked(indexPath: indexPath)
     }
-
 }

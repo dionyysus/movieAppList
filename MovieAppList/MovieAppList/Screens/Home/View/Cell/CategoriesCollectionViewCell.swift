@@ -23,9 +23,11 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(labelClicked))
-        categoryNameLabel.isUserInteractionEnabled = true
         categoryNameLabel.addGestureRecognizer(tapGesture)
+        categoryNameLabel.isUserInteractionEnabled = true
+
     }
+    
     @objc func labelClicked() {
         guard let indexPath = indexPath else {
             return

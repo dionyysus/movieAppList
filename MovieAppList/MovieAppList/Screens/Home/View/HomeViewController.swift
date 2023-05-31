@@ -7,18 +7,17 @@
 
 import UIKit
 
-
+// TODO: search yap
 class HomeViewController: UIViewController, UITextFieldDelegate {
 
-    private var movies = [Movie]()
-    //private var viewMovies = [Movie]()
-    private var genres = [Genre]()
+    private var movies: [Movie]? //all movies
+    private var genres: [Genre]? //all categories
     
     var searching = false
-    var filteredMovies = [Movie]() // Arama sonucu listesi
+    var filteredMovies: [Movie]? // searching
     
     var isFiltered = true
-    var categoryMovies = [Movie]()
+    var categoryMovies: [Movie]? // filter categories
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var moviesCollectionView: UICollectionView!
@@ -36,29 +35,33 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         categoryCollectionView.dataSource = self
         categoryCollectionView.delegate = self
   
-        APIManager.shared.fetchMovies(url: APIManager.shared.apiURL) { (data: MovieResponse?) in
-            self.movies = data!.results!
-            //self.viewMovies = data!.results!
-            self.categoryMovies = data!.results!
-            DispatchQueue.main.async {
-                self.moviesCollectionView.reloadData()
-                self.categoryCollectionView.reloadData()
-                //self.viewMovies = self.movies.filter {($0.genreIDS?.first ?? 0) == (self.genres.first?.id ?? 0)}
-            }
-        }
-        APIManager.shared.fetchMovies(url: APIManager.shared.genreApiURL) { (data: GenreResponse?) in
-            self.genres = data!.genres!
+        // TODO: network istekleri viewModel'e alınacak
+        APIManager.shared.execute(url: APIManager.shared.apiURL) { (data: MovieResponse?) in
+            self.movies = data?.results ?? []
+            self.categoryMovies = data?.results ?? []
+            // TODO: main async değişimi servis isteğinde response alındığı yerde yapılacak
             DispatchQueue.main.async {
                 self.moviesCollectionView.reloadData()
                 self.categoryCollectionView.reloadData()
             }
         }
-
+        APIManager.shared.execute(url: APIManager.shared.genreApiURL) { (data: GenreResponse?) in
+            self.genres = data?.genres ?? []
+            DispatchQueue.main.async {
+                self.moviesCollectionView.reloadData()
+                self.categoryCollectionView.reloadData()
+            }
+        }
     }
     
     @IBAction func searchHandler(_ sender: UITextField) {
         if let searchText = sender.text{
-            filteredMovies = searchText.isEmpty ? movies : movies.filter {$0.title!.lowercased().contains(searchText.lowercased())}
+            filteredMovies = searchText.isEmpty ? movies : movies?.filter { movie in
+                if let title = movie.title?.lowercased() {
+                    return title.contains(searchText.lowercased())
+                }
+                return false
+            }
             searching = true
         }
         if sender.text!.isEmpty {
@@ -70,35 +73,24 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     @objc func labelTapped() {
         print("category lapel tapped")
     }
-
-//    func labelClicked(indexPath: IndexPath) {
-//            let selectedCategory = genres[indexPath.row]
-//            let filteredMovies = movies.filter { movie in
-//                return movie.genreIDS?.contains(selectedCategory.id ?? 0) ?? false
-//            }
-//
-//            updateCollectionView(with: filteredMovies)
-//        }
-//    func updateCollectionView(with movies: [Movie]) {
-//        self.filteredMovies = movies
-//        moviesCollectionView.reloadData()
-//    }
 }
 
 extension HomeViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
-        if collectionView == moviesCollectionView{
+        if collectionView == moviesCollectionView {
             let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
-            let gotoViewController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-            let movie = movies[indexPath.row]
-            gotoViewController.movieId = indexPath.row
-            gotoViewController.prepare(movie: movie)
-            navigationController?.pushViewController(gotoViewController, animated: true)
-
-        }else if  collectionView == categoryCollectionView{
-
+            let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            let movie = categoryMovies?[indexPath.row] //save index-collections
+            let firstGenre = genres?.filter { $0.id == (movie?.genreIDS?.first ?? 0) }.first
+            gotoDetailController.movieId = indexPath.row
+            
+            if let movie, let firstGenre {
+                gotoDetailController.prepare(movie: movie, firstGenre: firstGenre) // TODO: İsim değiştir
+                navigationController?.pushViewController(gotoDetailController, animated: true)
+            }
+            return
         }
     }
    
@@ -106,14 +98,14 @@ extension HomeViewController: UICollectionViewDataSource{
         
         if collectionView == moviesCollectionView {
             if searching {
-                return filteredMovies.count
+                return filteredMovies?.count ?? 0
             }else if isFiltered {
-                return categoryMovies.count
+                return categoryMovies?.count ?? 0
             }else{
-                return movies.count
+                return movies?.count ?? 0
             }
         } else if collectionView == categoryCollectionView {
-            return genres.count
+            return genres?.count ?? 0
         } else {
             return 0
         }
@@ -128,52 +120,59 @@ extension HomeViewController: UICollectionViewDataSource{
                 return UICollectionViewCell()
             }
             if searching{
-                cell.movieNameLabel.text = filteredMovies[indexPath.row].title
-                cell.movieVoteLabel.text = String(filteredMovies[indexPath.row].voteAverage ?? 0.0)
+                cell.movieNameLabel.text = filteredMovies?[indexPath.row].title
+                cell.movieVoteLabel.text = String(filteredMovies?[indexPath.row].voteAverage ?? 0.0)
 
-                let imgPosterPath = filteredMovies[indexPath.row].posterPath ?? ""
+                let imgPosterPath = filteredMovies?[indexPath.row].posterPath ?? ""
                 let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
 
-                cell.movieImageView.loadImg(url: imgFullPath!)
-                filteredMovies[indexPath.row].genreIDS?.forEach{print("ggwp \($0)")}
+                if let imageFullPath = imgFullPath {
+                    cell.movieImageView.loadImg(url: imageFullPath)
+                    filteredMovies?[indexPath.row].genreIDS?.forEach{print("filtered movie:\($0)")}
+                }
                 
             }else if isFiltered{
-                cell.movieNameLabel.text = categoryMovies[indexPath.row].title
-                cell.movieVoteLabel.text = String(categoryMovies[indexPath.row].voteAverage ?? 0.0)
+                cell.movieNameLabel.text = categoryMovies?[indexPath.row].title
+                cell.movieVoteLabel.text = String(categoryMovies?[indexPath.row].voteAverage ?? 0.0)
 
-                let imgPosterPath = categoryMovies[indexPath.row].posterPath ?? ""
+                let imgPosterPath = categoryMovies?[indexPath.row].posterPath ?? ""
                 let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
+                               
 
-                cell.movieImageView.loadImg(url: imgFullPath!)
-                
-                var genreName = ""
-                for genre in genres {
-                    if ((categoryMovies[indexPath.row].genreIDS?.contains(genre.id!)) == true) {
-                        genreName +=  genre.name ?? ""
-                        genreName += ","
-                    }
+                if let imageFullPath = imgFullPath{
+                    cell.movieImageView.loadImg(url: imageFullPath)
                 }
+             
+                let movieGenres = categoryMovies?[indexPath.row].genreIDS ?? []
+                let genreName = genres?.filter { genre in
+                    movieGenres.contains(genre.id ?? 0)
+                }.map { $0.name ?? "" }.joined(separator: ",")
+                                
                 cell.movieCategoryNameLabel.text = genreName
-                movies[indexPath.row].genreIDS?.forEach{print("ggwp \($0)")}
                 
             }else{
-                cell.movieNameLabel.text = movies[indexPath.row].title
-                cell.movieVoteLabel.text = String(movies[indexPath.row].voteAverage ?? 0.0)
+                cell.movieNameLabel.text = movies?[indexPath.row].title
+                cell.movieVoteLabel.text = String(movies?[indexPath.row].voteAverage ?? 0.0)
 
-                let imgPosterPath = movies[indexPath.row].posterPath ?? ""
+                let imgPosterPath = movies?[indexPath.row].posterPath ?? ""
                 let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
 
                 cell.movieImageView.loadImg(url: imgFullPath!)
                 
-                var genreName = ""
-                for genre in genres {
-                    if ((movies[indexPath.row].genreIDS?.contains(genre.id!)) == true) {
-                        genreName +=  genre.name ?? ""
-                        genreName += ","
-                    }
-                }
+                let movieGenres = movies?[indexPath.row].genreIDS ?? []
+                let genreName = genres?.filter { genre in
+                    movieGenres.contains(genre.id ?? 0)
+                }.map { $0.name ?? "" }.joined(separator: ",")
+                
+//                var genreName = ""
+//                for genre in genres ?? [] {
+//                    if ((movies?[indexPath.row].genreIDS?.contains(genre.id!)) == true) {
+//                        genreName +=  genre.name ?? ""
+//                        genreName += ","
+//                    }
+//                }
                 cell.movieCategoryNameLabel.text = genreName
-                movies[indexPath.row].genreIDS?.forEach{print("ggwp \($0)")}
+                movies?[indexPath.row].genreIDS?.forEach{print("ggwp \($0)")}
             }
 
             return cell
@@ -183,7 +182,7 @@ extension HomeViewController: UICollectionViewDataSource{
             guard let categoryCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCollectionViewCell", for: indexPath) as? CategoriesCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            categoryCell.categoryNameLabel.text = genres[indexPath.row].name
+            categoryCell.categoryNameLabel.text = genres?[indexPath.row].name
 
             categoryCell.delegate = self
             categoryCell.indexPath = indexPath
@@ -203,7 +202,7 @@ extension HomeViewController: UICollectionViewDelegate{
            if searchString.isEmpty {
                filteredMovies = movies
            } else {
-               filteredMovies = (movies.filter { movie in
+               filteredMovies = (movies?.filter { movie in
                    return (movie.title?.lowercased().contains(searchString.lowercased()))!
                    searching = true
                })
@@ -216,34 +215,7 @@ extension HomeViewController: CategoriesCellDelegate{
     
     func labelClicked(indexPath: IndexPath) {
    
-        categoryMovies = movies.filter{ $0.genreIDS?.contains(genres[indexPath.row].id ?? 0) ?? false }
+        categoryMovies = movies?.filter{ $0.genreIDS?.contains(genres?[indexPath.row].id ?? 0) ?? false }
         moviesCollectionView.reloadData()
-        
-        
-//         let selectedCategory = genres[indexPath.row]
-//        let filteredMovies = movies.filter { movie in
-//            return movie.genreIDS?.contains(genres[indexPath.row].id ?? 0) ?? false }
-//        updateCollectionView(with: filteredMovies)
-        
     }
-//    func updateCollectionView(with movies: [Movie]) {
-//
-//            filteredMovies = movies
-//            moviesCollectionView.reloadData()
-//    }
-       
 }
-
-//    func labelClicked(indexPath: IndexPath) {
-//            let selectedCategory = genres[indexPath.row]
-//            let filteredMovies = movies.filter { movie in
-//                return movie.genreIDS?.contains(selectedCategory.id ?? 0) ?? false
-//            }
-//
-//            updateCollectionView(with: filteredMovies)
-//        }
-//    func updateCollectionView(with movies: [Movie]) {
-//        self.filteredMovies = movies
-//        moviesCollectionView.reloadData()
-//    }
-//}
