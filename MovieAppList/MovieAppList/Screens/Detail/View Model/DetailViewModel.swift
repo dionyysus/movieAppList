@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+class DetailViewModel{
+    
+    var movie: Movie?
+    var firstGenre: Genre?
+    
+    init(movie: Movie, firstGenre: Genre?) {
+           self.movie = movie
+           self.firstGenre = firstGenre
+       }
+    
+}

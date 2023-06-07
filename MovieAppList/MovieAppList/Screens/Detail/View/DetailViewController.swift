@@ -15,24 +15,22 @@ private extension DetailViewController{
 }
 
 class DetailViewController: UIViewController {
-
-    let imgUrl = "http://image.tmdb.org/t/p/w500"
+    
+    private var viewModel: DetailViewModel?
+    
+    var movieId: Int? = 0
 
     @IBOutlet weak var movieDetailNameLabel: UILabel!
     @IBOutlet weak var movieDetailImageView: UIImageView!
     @IBOutlet weak var movieDetailCategoryLabel: UILabel!
     @IBOutlet weak var movieVoteLabel: UILabel!
     @IBOutlet weak var movieDetailDescriptionLabel: UILabel!
-    
-    var movie: Movie?
-    var movieId: Int? = 0
-    var firstGenre: Genre?
-    
     @IBOutlet weak var movieFavoriteImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = movie?.title
+       
+        title = viewModel?.movie?.title
         
         let tapFavorite = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.favoriteTappedImageView))
         
@@ -40,21 +38,21 @@ class DetailViewController: UIViewController {
         movieFavoriteImageView.isUserInteractionEnabled = true
         
         navigationController?.navigationBar.topItem?.backButtonTitle = "Back"
-        movieDetailNameLabel.text = movie?.title
+        movieDetailNameLabel.text = viewModel?.movie?.title
         
-        movieVoteLabel.text = String(movie?.voteAverage ?? 0.0)
+        movieVoteLabel.text = String(viewModel?.movie?.voteAverage ?? 0.0)
         
-        let imgPosterPath = movie?.posterPath ?? ""
-        let imgFullPath = URL(string: "\(imgUrl + imgPosterPath)")
+        let imgPosterPath = viewModel?.movie?.posterPath ?? ""
+        let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
         movieDetailImageView.loadImg(url: imgFullPath!)
         
-        movieDetailDescriptionLabel.text = movie?.overview
-        movieDetailCategoryLabel.text = firstGenre?.name
+        movieDetailDescriptionLabel.text = viewModel?.movie?.overview
+        movieDetailCategoryLabel.text = viewModel?.firstGenre?.name
     }
 
     @objc private func favoriteTappedImageView() {
         
-        if APIManager.shared.setFavoriteMovie(movie: movie! , genre: firstGenre!){
+        if APIManager.shared.setFavoriteMovie(movie: (viewModel?.movie!)!, genre: (viewModel?.firstGenre!)!){
             movieFavoriteImageView.image = UIImage(named: Constant.heartFilled )
         }
         else{
@@ -63,8 +61,7 @@ class DetailViewController: UIViewController {
     }
   
     func prepare(movie: Movie, firstGenre: Genre?) {
-        self.movie = movie
-        self.firstGenre = firstGenre
+        viewModel = DetailViewModel(movie: movie, firstGenre: firstGenre)
     }
     
 }
