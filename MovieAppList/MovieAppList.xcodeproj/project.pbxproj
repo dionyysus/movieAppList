@@ -26,6 +26,7 @@
 		0AF7A89029FA58E9000B2E86 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF7A88F29FA58E9000B2E86 /* HomeViewController.swift */; };
 		0AF7A89829FA58EA000B2E86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF7A89629FA58EA000B2E86 /* LaunchScreen.storyboard */; };
 		0AF86FA029FC4E140065357C /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AF86F9F29FC4E140065357C /* Detail.storyboard */; };
+		0AFAFE042A2D17400036BCCB /* ObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AFAFE032A2D17400036BCCB /* ObservableObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		0AF7A89729FA58EA000B2E86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0AF7A89929FA58EA000B2E86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AF86F9F29FC4E140065357C /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
+		0AFAFE032A2D17400036BCCB /* ObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				0AF7A89F29FA5A36000B2E86 /* Models */,
 				0AF7A89629FA58EA000B2E86 /* LaunchScreen.storyboard */,
 				0AF7A89929FA58EA000B2E86 /* Info.plist */,
+				0AFAFE032A2D17400036BCCB /* ObservableObject.swift */,
 			);
 			path = MovieAppList;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				0AD8F3152A0BC0EF008BF778 /* FavoritesCollectionViewCell.swift in Sources */,
 				0A1C05F92A05B7B800F84E63 /* APIManager.swift in Sources */,
 				0A64043629FC4A4E00035D97 /* DetailViewController.swift in Sources */,
+				0AFAFE042A2D17400036BCCB /* ObservableObject.swift in Sources */,
 				0A64043329FC499400035D97 /* MovieResponse.swift in Sources */,
 				0AF7A88E29FA58E9000B2E86 /* SceneDelegate.swift in Sources */,
 				0A1C05F62A05849B00F84E63 /* MoviesCollectionViewCell.swift in Sources */,

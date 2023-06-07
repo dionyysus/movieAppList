@@ -29,7 +29,7 @@ class APIManager {
     }
     let imgUrl = "http://image.tmdb.org/t/p/w500"
 
-    private init() {}
+    init() {} // bu satır private vardı sildim !!!!
     
     func setFavoriteMovie(movie: Movie, genre: Genre) -> Bool {
 
