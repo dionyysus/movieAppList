@@ -33,7 +33,7 @@ class APIManager {
     
     func setFavoriteMovie(movie: Movie, genre: Genre) -> Bool {
 
-        if !favoriteMoviesArray.contains(where: {$0.id == movie.id}) && !categoryMoviesArray.contains(where: {$0.id == genre.id}){
+        if !favoriteMoviesArray.contains(where: {$0.id == movie.id}){
             favoriteMoviesArray.append(movie)
             categoryMoviesArray.append(genre)
         } else {

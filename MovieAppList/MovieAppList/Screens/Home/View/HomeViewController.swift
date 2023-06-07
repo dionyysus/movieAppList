@@ -211,8 +211,7 @@ extension HomeViewController: UICollectionViewDelegate{
 extension HomeViewController: CategoriesCellDelegate{
     
     func labelClicked(indexPath: IndexPath) {
-        
-        
+
         viewModel?.categoryMovies = viewModel?.movies?.filter{ $0.genreIDS?.contains(viewModel?.genres?[indexPath.row].id ?? 0) ?? false }
         moviesCollectionView.reloadData()
         }

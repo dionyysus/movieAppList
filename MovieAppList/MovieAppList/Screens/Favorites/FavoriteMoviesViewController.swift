@@ -17,9 +17,8 @@ class FavoriteMoviesViewController: UIViewController {
 
     @IBOutlet weak var favoriteMoviesCollectionView: UICollectionView!
     
-    var movie: Movie?
-    var firstGenre: Genre?
-    var genres: [Genre]?
+    private var viewModel: FavoriteViewModel?
+
     lazy var favoriteLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
@@ -32,11 +31,10 @@ class FavoriteMoviesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        viewModel = FavoriteViewModel()
+
         title = "Favorites"
-        
-        navigationController?.navigationBar.topItem?.backButtonTitle = "Back"
- 
+         
         let nib = UINib(nibName: FavoritesCollectionViewCell.identifier, bundle: nil)
         favoriteMoviesCollectionView.register(nib, forCellWithReuseIdentifier: FavoritesCollectionViewCell.identifier)
 
@@ -74,7 +72,7 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
             
             gotoDetailController.movieId = indexPath.row
             gotoDetailController.prepare(movie: movie, firstGenre: genre)
-            print(firstGenre)
+            print(viewModel?.firstGenre ?? 0)
             navigationController?.pushViewController(gotoDetailController, animated: true)
 
             return
@@ -111,7 +109,7 @@ extension FavoriteMoviesViewController: FavoritesCellDelegate{
     func imageViewClicked(indexPath: IndexPath) {
         let movie = APIManager.shared.getFavoriteMovies()[indexPath.row]
         let genre = APIManager.shared.getCategoryMovies()[indexPath.row]
-        APIManager.shared.setFavoriteMovie(movie: movie, genre: genre)
+        //APIManager.shared.setFavoriteMovie(movie: movie, genre: genre)
         favoriteMoviesCollectionView.reloadData()
     }
 }
