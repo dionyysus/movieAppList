@@ -15,6 +15,9 @@ class APIManager {
     // TODO: farklı yere al, farklı classa, userdefault, coredata, realm -> bi tanesini seçip yapabilirsin
     private var favoriteMoviesArray: [Movie] = []
     private var categoryMoviesArray: [Genre] = []
+/** Added `searchedMoviesArray` & `query` properties
+ */ private var searchedMoviesArray: [Movie] = []
+    var query = String()
 
     // -- DONE --- TODO: api key ayır, uygulamayı ben build alsam tek bi yeri değiştirdiğimde çalıaşbilir olmalı
     var baseURL = "https://api.themoviedb.org/"
@@ -27,9 +30,14 @@ class APIManager {
     var genreApiURL: String {
         baseURL + "3/genre/movie/list?" + apiKey
     }
+/** `searchAPIURL` Property.
+*/  var searchApiURL: String {
+      baseURL + "3/search/movie?query=\(query)&" + apiKey
+    }
+
     let imgUrl = "http://image.tmdb.org/t/p/w500"
 
-    init() {} // bu satır private vardı sildim !!!!
+    init() { } // bu satır private vardı sildim !!!!
     
     func setFavoriteMovie(movie: Movie, genre: Genre) -> Bool {
 
@@ -49,10 +57,18 @@ class APIManager {
     func getFavoriteMovies() -> [Movie] {
         return favoriteMoviesArray
     }
+
     func getCategoryMovies() -> [Genre] {
         return categoryMoviesArray
     }
-    
+  
+/** Get Searched Movies Method
+*/  func getSearchedMovies(title: String) -> [Movie] {
+        return searchedMoviesArray
+    }
+
+/** No changes are required here.
+ */
     func execute<T: Decodable>(url: String, completion: @escaping(T?) -> ()) {
         guard let url = URL(string: url) else { return }
         
