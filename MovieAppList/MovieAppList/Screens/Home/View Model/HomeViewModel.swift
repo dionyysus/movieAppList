@@ -20,7 +20,6 @@ class HomeViewModel {
            self.apiManager = apiManager
        }
     
-
     func fetchMovies(completion: @escaping () -> Void) {
         APIManager.shared.execute(url: APIManager.shared.apiURL) { (data: MovieResponse?) in
             
@@ -29,8 +28,8 @@ class HomeViewModel {
             DispatchQueue.main.async {
                 completion()
             }
-            }
         }
+    }
 
     func fetchGenres(completion: @escaping () -> Void) {
         APIManager.shared.execute(url: APIManager.shared.genreApiURL) { (data: GenreResponse?) in
@@ -39,10 +38,24 @@ class HomeViewModel {
             DispatchQueue.main.async {
                 completion()
             }
+        }
+    }
+  
+/** Fetch Movies by Name Method
+    Here, rather than using the Singleton of `APIManager.shared`, we use the private optional instance so we can set its `query` property.
+*/  func fetchMovie(named name: String, completion: @escaping () -> Void) {
+        apiManager = APIManager()
+/**     Unwrapping to ensure that everything exists before making network calls
+*/      guard let apiManager = apiManager else { return }
+        apiManager.query = name
+  
+        apiManager.execute(url: apiManager.searchApiURL) { (data: MovieResponse?) in
+            self.movies = data?.results ?? []
+            DispatchQueue.main.async {
+              completion()
             }
         }
-
-    
+    }
 }
 
 

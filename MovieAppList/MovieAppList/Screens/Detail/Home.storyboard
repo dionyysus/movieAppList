@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1Uq-Em-qJx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1Uq-Em-qJx">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -21,10 +22,10 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="98"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="kDf-Lx-Est">
-                                        <rect key="frame" x="15" y="32" width="363" height="34"/>
+                                        <rect key="frame" x="15" y="32" width="308" height="34"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search movie" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8gg-XQ-cpq">
-                                                <rect key="frame" x="0.0" y="0.0" width="363" height="34"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="308" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
@@ -33,12 +34,24 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBD-MA-Azv">
+                                        <rect key="frame" x="328.33333333333331" y="30" width="49.666666666666686" height="38"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
+                                        <connections>
+                                            <action selector="searchTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Aaf-fy-oWN"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="mBD-MA-Azv" firstAttribute="top" secondItem="a70-r4-IY7" secondAttribute="top" constant="30" id="32N-Hx-Ze8"/>
                                     <constraint firstItem="kDf-Lx-Est" firstAttribute="top" secondItem="a70-r4-IY7" secondAttribute="top" constant="32" id="Mbl-L4-dlt"/>
+                                    <constraint firstItem="mBD-MA-Azv" firstAttribute="leading" secondItem="8gg-XQ-cpq" secondAttribute="trailing" constant="5.3333333333333144" id="YI5-Si-pwN"/>
+                                    <constraint firstAttribute="trailing" secondItem="mBD-MA-Azv" secondAttribute="trailing" constant="15" id="a0r-hs-n5E"/>
                                     <constraint firstAttribute="height" constant="98" id="hkp-6n-hWk"/>
-                                    <constraint firstAttribute="trailing" secondItem="kDf-Lx-Est" secondAttribute="trailing" constant="15" id="obb-BB-FlM"/>
+                                    <constraint firstAttribute="bottom" secondItem="mBD-MA-Azv" secondAttribute="bottom" constant="30" id="i0d-20-PVY"/>
+                                    <constraint firstAttribute="trailing" secondItem="kDf-Lx-Est" secondAttribute="trailing" constant="70" id="obb-BB-FlM"/>
                                     <constraint firstItem="kDf-Lx-Est" firstAttribute="leading" secondItem="a70-r4-IY7" secondAttribute="leading" constant="15" id="ruQ-DT-HRH"/>
                                     <constraint firstAttribute="bottom" secondItem="kDf-Lx-Est" secondAttribute="bottom" constant="32" id="ztd-hL-x6H"/>
                                 </constraints>
@@ -253,6 +266,7 @@
     </scenes>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
