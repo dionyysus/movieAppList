@@ -88,7 +88,14 @@ extension HomeViewController: UICollectionViewDataSource{
             let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
             let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
 #warning("TODO: - After searching then selecting a cell, is still loading the DeatialViewController populated with the viewModel's categoryMovies array, rather than the viewModel's movies array.")
-            let movie = viewModel?.categoryMovies?[indexPath.row]  //save index-collections
+            //let movie = viewModel?.categoryMovies?[indexPath.row]  //save index-collections
+            
+            var movie = viewModel?.categoryMovies?[indexPath.row]
+            if searching{
+                movie = viewModel?.filteredMovies?[indexPath.row]
+            }else{
+                movie = viewModel?.categoryMovies?[indexPath.row]
+            }
             let firstGenre = viewModel?.genres?.filter { $0.id == (movie?.genreIDS?.first ?? 0) }.first
             gotoDetailController.movieId = indexPath.row
             

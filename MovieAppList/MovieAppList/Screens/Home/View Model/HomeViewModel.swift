@@ -50,7 +50,8 @@ class HomeViewModel {
         apiManager.query = name
   
         apiManager.execute(url: apiManager.searchApiURL) { (data: MovieResponse?) in
-            self.movies = data?.results ?? []
+            self.filteredMovies = data?.results ?? []
+            self.categoryMovies = data?.results ?? []
             DispatchQueue.main.async {
               completion()
             }
