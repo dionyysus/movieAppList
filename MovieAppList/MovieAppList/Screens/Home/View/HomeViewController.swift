@@ -14,8 +14,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
 
     var searching = false
     var isFiltered = true
-/**
-    Added `searchedFilm` Property which will be set to the value of  `searchBar.text`
+/** Added `searchedFilm` Property which will be set to the value of  `searchBar.text`
  */ var searchedFilm = String()
 
     @IBOutlet weak var searchBar: UISearchBar!

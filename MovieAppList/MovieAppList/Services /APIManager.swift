@@ -62,7 +62,7 @@ class APIManager {
         return categoryMoviesArray
     }
   
-/** Get Searched Movies Method
+/** Get Searched Movies Method takes a `String` parameter
 */  func getSearchedMovies(title: String) -> [Movie] {
         return searchedMoviesArray
     }

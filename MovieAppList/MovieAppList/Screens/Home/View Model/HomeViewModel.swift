@@ -48,6 +48,7 @@ class HomeViewModel {
 /**     Unwrapping to ensure that everything exists before making network calls
 */      guard let apiManager = apiManager else { return }
         apiManager.query = name
+  
         apiManager.execute(url: apiManager.searchApiURL) { (data: MovieResponse?) in
             self.movies = data?.results ?? []
             DispatchQueue.main.async {
