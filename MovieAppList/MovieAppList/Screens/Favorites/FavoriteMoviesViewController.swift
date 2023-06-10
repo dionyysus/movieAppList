@@ -109,7 +109,7 @@ extension FavoriteMoviesViewController: FavoritesCellDelegate{
     func imageViewClicked(indexPath: IndexPath) {
         let movie = APIManager.shared.getFavoriteMovies()[indexPath.row]
         let genre = APIManager.shared.getCategoryMovies()[indexPath.row]
-        //APIManager.shared.setFavoriteMovie(movie: movie, genre: genre)
+        APIManager.shared.setFavoriteMovie(movie: movie, genre: genre)
         favoriteMoviesCollectionView.reloadData()
     }
 }
