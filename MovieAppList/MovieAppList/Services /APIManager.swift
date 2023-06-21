@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 // movie api: https://api.themoviedb.org/3/discover/movie?api_key=d0cb5f9ae1c996d1bd22dc17e287debd
 
@@ -12,7 +13,7 @@ class APIManager {
 
     static let shared = APIManager()
     
-    // TODO: farklı yere al, farklı classa, userdefault, coredata, realm -> bi tanesini seçip yapabilirsin
+    // TODO: farklı yere al, farklı classa, userdefault, coredata, realm -> bi tanesini seçip yapabilirsin.
     private var favoriteMoviesArray: [Movie] = []
     private var categoryMoviesArray: [Genre] = []
 /** Added `searchedMoviesArray` & `query` properties
@@ -37,10 +38,13 @@ class APIManager {
 
     let imgUrl = "http://image.tmdb.org/t/p/w500"
 
-    init() { } // bu satır private vardı sildim !!!!
+    private init() { } // bu satır private vardı sildim !!!!
+    
+
     
     func setFavoriteMovie(movie: Movie, genre: Genre) -> Bool {
 
+        //let realm = try! Realm()
         if !favoriteMoviesArray.contains(where: {$0.id == movie.id}){
             favoriteMoviesArray.append(movie)
             categoryMoviesArray.append(genre)
@@ -82,14 +86,14 @@ class APIManager {
                         let decodedData = try JSONDecoder().decode(T.self, from: data)
                         completion(decodedData)
                     } catch {
-                        print("ggwp parsing error \(error)")
+                        print("parsing error \(error)")
                     }
                 } else {
-                    print("ggwp failed fetch data")
+                    print("failed fetch data")
                     completion(nil)
                 }
             } else {
-                print("ggwp error data task \(String(describing: error))")
+                print("error data task \(String(describing: error))")
                 completion(nil)
             }
         }

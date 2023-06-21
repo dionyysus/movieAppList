@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 private extension FavoriteMoviesViewController{
     enum Constant{

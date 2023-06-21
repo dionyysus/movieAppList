@@ -71,7 +71,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
 /** This line replaces spaces with `%20` for appropriate URL Creation, returns an optional, thus the unwrapping
 */  guard let searched = searchedFilm.addingPercentEncoding(withAllowedCharacters: .alphanumerics) else { return }
     viewModel?.fetchMovie(named: searched) { [weak self] in
-      self?.moviesCollectionView.reloadData()
+        self?.moviesCollectionView.reloadData()
     }
   }
   
@@ -87,25 +87,21 @@ extension HomeViewController: UICollectionViewDataSource{
         if collectionView == moviesCollectionView {
             let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
             let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-#warning("TODO: - After searching then selecting a cell, is still loading the DeatialViewController populated with the viewModel's categoryMovies array, rather than the viewModel's movies array.")
-            //let movie = viewModel?.categoryMovies?[indexPath.row]  //save index-collections
-            
-            var movie = viewModel?.categoryMovies?[indexPath.row]
+                        
+            var movie = viewModel?.categoryMovies?[indexPath.row]  //save index-collections
             if searching{
                 movie = viewModel?.filteredMovies?[indexPath.row]
             }else{
                 movie = viewModel?.categoryMovies?[indexPath.row]
             }
-            let firstGenre = viewModel?.genres?.filter { $0.id == (movie?.genreIDS?.first ?? 0) }.first
+            let firstGenre = viewModel?.genres?.filter { $0.id == (movie?.genreIDS.first ?? 0) }.first
             gotoDetailController.movieId = indexPath.row
             
             if let movie, let firstGenre {
-                gotoDetailController.prepare(movie: movie, firstGenre: firstGenre) // TODO: İsim değiştir
+                gotoDetailController.prepare(movie: movie, firstGenre: firstGenre)
                 navigationController?.pushViewController(gotoDetailController, animated: true)
             }
             return
-        } else if collectionView == categoryCollectionView {
-            
         }
     }
 
@@ -141,7 +137,7 @@ extension HomeViewController: UICollectionViewDataSource{
 
                 if let imageFullPath = imgFullPath {
                     cell.movieImageView.loadImg(url: imageFullPath)
-                    viewModel?.filteredMovies?[indexPath.row].genreIDS?.forEach{print("filtered movie:\($0)")}
+                    viewModel?.filteredMovies?[indexPath.row].genreIDS.forEach{print("filtered movie:\($0)")}
                 }
                 
             } else if isFiltered {
@@ -155,9 +151,9 @@ extension HomeViewController: UICollectionViewDataSource{
                     cell.movieImageView.loadImg(url: imageFullPath)
                 }
              
-                let movieGenres = viewModel?.categoryMovies?[indexPath.row].genreIDS ?? []
+                let movieGenres = viewModel?.categoryMovies?[indexPath.row].genreIDS
                 let genreName = viewModel?.genres?.filter { genre in
-                     movieGenres.contains(genre.id ?? 0)
+                    movieGenres!.contains(genre.id ?? 0) // ! ekledim movieGenres yanına (realm için)
                 }.map { $0.name ?? "" }.joined(separator: ",")
                                 
                 cell.movieCategoryNameLabel.text = genreName
@@ -171,13 +167,13 @@ extension HomeViewController: UICollectionViewDataSource{
 
                 cell.movieImageView.loadImg(url: imgFullPath!)
                 
-                let movieGenres = viewModel?.movies?[indexPath.row].genreIDS ?? []
+                let movieGenres = viewModel?.movies?[indexPath.row].genreIDS
                 let genreName = viewModel?.genres?.filter { genre in
-                    movieGenres.contains(genre.id ?? 0)
+                    movieGenres!.contains(genre.id ?? 0) // ! ekledim movieGenres yanına (realm için)
                 }.map { $0.name ?? "" }.joined(separator: ",")
                 
                 cell.movieCategoryNameLabel.text = genreName
-                viewModel?.movies?[indexPath.row].genreIDS?.forEach{print("ggwp \($0)")}
+                viewModel?.movies?[indexPath.row].genreIDS.forEach{print("\($0)")}
             }
             return cell
         }
@@ -222,7 +218,7 @@ extension HomeViewController: UICollectionViewDelegate{
 
 extension HomeViewController: CategoriesCellDelegate {
     func labelClicked(indexPath: IndexPath) {
-        viewModel?.categoryMovies = viewModel?.movies?.filter{ $0.genreIDS?.contains(viewModel?.genres?[indexPath.row].id ?? 0) ?? false }
+        viewModel?.categoryMovies = viewModel?.movies?.filter{ $0.genreIDS.contains(viewModel?.genres?[indexPath.row].id ?? 0) ?? false }
           moviesCollectionView.reloadData()
     }
 }

@@ -7,65 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "26422AEE-4029-456E-A695-5892D369F5B0"
+            uuid = "279D0175-9166-45A0-8001-0EEB9F81DC54"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MovieAppList/Screens/Home/View/HomeViewController.swift"
+            filePath = "MovieAppList/Models/MovieResponse.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D989047D-69A7-4BE3-BDC7-170A8B19A2FF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MovieAppList/Screens/Home/View/HomeViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D989047D-69A7-4BE3-BDC7-170A8B19A2FF - 9a1afa89bfc0dd66"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MovieAppList.HomeViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "MovieAppList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gizemcoskun/Creative%20Cloud%20Files/MovieAppProject/MovieAppList/MovieAppList/MovieAppList/Screens/Home/View/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "1500">
-               </Location>
-               <Location
-                  uuid = "D989047D-69A7-4BE3-BDC7-170A8B19A2FF - a61de118836b1372"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in MovieAppList.HomeViewController.viewDidLoad() -&gt; ()"
-                  moduleName = "MovieAppList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gizemcoskun/Creative%20Cloud%20Files/MovieAppProject/MovieAppList/MovieAppList/MovieAppList/Screens/Home/View/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "56">
-               </Location>
-            </Locations>
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

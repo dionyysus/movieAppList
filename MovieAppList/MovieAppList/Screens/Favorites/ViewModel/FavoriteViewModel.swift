@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import RealmSwift
 class FavoriteViewModel {
     
     var movie: Movie?

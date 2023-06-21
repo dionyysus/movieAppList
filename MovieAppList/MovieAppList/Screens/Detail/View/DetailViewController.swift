@@ -14,9 +14,11 @@ private extension DetailViewController{
     }
 }
 
+
 class DetailViewController: UIViewController {
     
     private var viewModel: DetailViewModel?
+    private var favoriteMovies: MovieResponse
     
     var movieId: Int? = 0
 
@@ -26,6 +28,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var movieVoteLabel: UILabel!
     @IBOutlet weak var movieDetailDescriptionLabel: UILabel!
     @IBOutlet weak var movieFavoriteImageView: UIImageView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +56,11 @@ class DetailViewController: UIViewController {
     @objc private func favoriteTappedImageView() {
         
         if APIManager.shared.setFavoriteMovie(movie: (viewModel?.movie!)!, genre: (viewModel?.firstGenre!)!){
-            movieFavoriteImageView.image = UIImage(named: Constant.heartFilled )
+            
+            movieFavoriteImageView.image = UIImage(named: Constant.heartFilled)
+            
+//            let favoriteMovie = Movie(id: selectedMovie.id, title: selectedMovie.title, overview: selectedMovie.overview, posterPath: selectedMovie.posterPath)
+//            RealmManager.shared.saveMovie(favoriteMovie)
         }
         else{
             movieFavoriteImageView.image = UIImage(named: Constant.heart)
