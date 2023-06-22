@@ -50,7 +50,7 @@ class FavoriteMoviesViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         favoriteMoviesCollectionView.reloadData()
-        favoriteLabel.isHidden = APIManager.shared.getFavoriteMovies().count != 0
+        favoriteLabel.isHidden = RealmManager.shared.getAllMovies().count != 0
     }
     
     override func viewDidLayoutSubviews() {
@@ -68,11 +68,11 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
             
             let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
             let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-            let movie = APIManager.shared.getFavoriteMovies()[indexPath.row]
-            let genre = APIManager.shared.getCategoryMovies()[indexPath.row]
+            let movie = RealmManager.shared.getAllMovies()[indexPath.row]
+            let firstGenre = movie.firstGenre
             
             gotoDetailController.movieId = indexPath.row
-            gotoDetailController.prepare(movie: movie, firstGenre: genre)
+            gotoDetailController.prepare(movie: movie, firstGenre: firstGenre)
             print(viewModel?.firstGenre ?? 0)
             navigationController?.pushViewController(gotoDetailController, animated: true)
 
@@ -81,13 +81,13 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return APIManager.shared.getFavoriteMovies().count
+        return RealmManager.shared.getAllMovies().count
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let favorites = APIManager.shared.getFavoriteMovies()[indexPath.row]
-        let categories = APIManager.shared.getCategoryMovies()[indexPath.row]
+        let favorites = RealmManager.shared.getAllMovies()[indexPath.row]
+        //let categories = APIManager.shared.getCategoryMovies()[indexPath.row]
         guard let cell = favoriteMoviesCollectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCollectionViewCell", for: indexPath) as? FavoritesCollectionViewCell else{
             return UICollectionViewCell()
         }
@@ -97,8 +97,7 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
         let imgPosterPath = favorites.posterPath ?? ""
         let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
         cell.favoriteMovieImageView.loadImg(url: imgFullPath!)
-        cell.favoriteCategoryNameLabel.text = categories.name
-        print(categories.name)
+        cell.favoriteCategoryNameLabel.text = favorites.firstGenre?.name
         cell.delegate = self
         cell.indexPath = indexPath
         
@@ -108,12 +107,12 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
 
 extension FavoriteMoviesViewController: FavoritesCellDelegate{
     func imageViewClicked(indexPath: IndexPath) {
-        let movie = APIManager.shared.getFavoriteMovies()[indexPath.row]
-        let genre = APIManager.shared.getCategoryMovies()[indexPath.row]
-        APIManager.shared.setFavoriteMovie(movie: movie, genre: genre)
+        let movie = RealmManager.shared.getAllMovies()[indexPath.row]
+        RealmManager.shared.deleteMovie(movie)
         favoriteMoviesCollectionView.reloadData()
     }
 }
 extension FavoriteMoviesViewController: UICollectionViewDelegate{
     
 }
+

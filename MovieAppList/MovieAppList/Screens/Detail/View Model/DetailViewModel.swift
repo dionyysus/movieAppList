@@ -13,8 +13,8 @@ class DetailViewModel{
     var firstGenre: Genre?
     
     init(movie: Movie, firstGenre: Genre?) {
-           self.movie = movie
-           self.firstGenre = firstGenre
-       }
+        self.movie = movie
+        self.firstGenre = firstGenre
+    }
     
 }
