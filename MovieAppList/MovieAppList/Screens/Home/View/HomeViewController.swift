@@ -14,6 +14,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
 
     var searching = false
     var isFiltered = false
+    var selectedCategory = false
     var searchedFilm = String()
 
     @IBOutlet weak var searchBar: UISearchBar!
@@ -66,10 +67,9 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
       
       searching = false
       isFiltered = false
+      selectedCategory = true
       self.moviesCollectionView.reloadData()
-
       }
-
     }
 
 extension HomeViewController: UICollectionViewDataSource{
@@ -80,10 +80,11 @@ extension HomeViewController: UICollectionViewDataSource{
             let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
             let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
                         
-            var movie = viewModel?.categoryMovies?[indexPath.row]  //save index-collections
+            var movie = viewModel?.movies?[indexPath.row]  //save index-collections
+            
             if searching{
                 movie = viewModel?.filteredMovies?[indexPath.row]
-            }else{
+            }else if isFiltered{
                 movie = viewModel?.categoryMovies?[indexPath.row]
             }
             let firstGenre = viewModel?.genres?.filter { $0.id == (movie?.genreIDS.first ?? 0) }.first
@@ -104,7 +105,9 @@ extension HomeViewController: UICollectionViewDataSource{
                 return viewModel?.filteredMovies?.count ?? 0
             } else if isFiltered {
                 return viewModel?.categoryMovies?.count ?? 0
-            } else {
+            } else if selectedCategory {
+                return viewModel?.movies?.count ?? 0
+            }else {
                 return viewModel?.movies?.count ?? 0
             }
         } else if collectionView == categoryCollectionView {
@@ -210,7 +213,6 @@ extension HomeViewController: CategoriesCellDelegate {
         
         isFiltered = true
         searching = false
-        
         viewModel?.categoryMovies = viewModel?.movies?.filter{ $0.genreIDS.contains(viewModel?.genres?[indexPath.row].id ?? 0) }
           moviesCollectionView.reloadData()
     }

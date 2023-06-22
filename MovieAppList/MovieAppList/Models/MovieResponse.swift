@@ -26,7 +26,7 @@ class Movie: Object, Codable {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var adult: Bool?
     @Persisted var backdropPath: String?
-    @Persisted var genreIDS: List<Int>
+    @Persisted var genreIDS: List<Int?>
     @Persisted var originalTitle: String?
     @Persisted var overview: String?
     @Persisted var popularity: Double?
@@ -52,7 +52,7 @@ class Movie: Object, Codable {
     }
     
     convenience init(id: Int, adult: Bool, backdropPath: String,
-                     genreIDS: List<Int>, originalTitle: String?,
+                     genreIDS: List<Int?>, originalTitle: String?,
                      overview: String, popularity: Double?, posterPath: String,
                      releaseDate: String, title: String, video: Bool,
                      voteAverage: Double, voteCount: Int, firstGenre: Genre?) {
