@@ -75,7 +75,6 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
             gotoDetailController.prepare(movie: movie, firstGenre: firstGenre)
             print(viewModel?.firstGenre ?? 0)
             navigationController?.pushViewController(gotoDetailController, animated: true)
-
             return
         }
     }

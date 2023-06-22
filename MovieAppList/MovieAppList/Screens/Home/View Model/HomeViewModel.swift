@@ -48,7 +48,6 @@ class HomeViewModel {
 /**     Unwrapping to ensure that everything exists before making network calls
 */      guard let apiManager = apiManager else { return }
         apiManager.query = name
-  
         apiManager.execute(url: apiManager.searchApiURL) { (data: MovieResponse?) in
             self.filteredMovies = data?.results ?? []
             self.categoryMovies = data?.results ?? []
@@ -59,22 +58,3 @@ class HomeViewModel {
     }
 }
 
-
-//        // TODO: network istekleri viewModel'e alınacak
-//        APIManager.shared.execute(url: APIManager.shared.apiURL) { (data: MovieResponse?) in
-//            self.movies = data?.results ?? []
-//            self.categoryMovies = data?.results ?? []
-//            // TODO: main async değişimi servis isteğinde response alındığı yerde yapılacak
-//            DispatchQueue.main.async {
-//                self.moviesCollectionView.reloadData()
-//                self.categoryCollectionView.reloadData()
-//            }
-//        }
-//        APIManager.shared.execute(url: APIManager.shared.genreApiURL) { (data: GenreResponse?) in
-//            self.genres = data?.genres ?? []
-//            DispatchQueue.main.async {
-//                self.moviesCollectionView.reloadData()
-//                self.categoryCollectionView.reloadData()
-//            }
-//        }
-//

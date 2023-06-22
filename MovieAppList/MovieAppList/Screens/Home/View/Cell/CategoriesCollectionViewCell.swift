@@ -14,18 +14,11 @@ protocol CategoriesCellDelegate: AnyObject {
 class CategoriesCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "CategoriesCollectionViewCell"
-
     
     @IBOutlet weak var categoryNameLabel: UILabel!
    
     weak var delegate: CategoriesCellDelegate?
-    var indexPath: IndexPath?
-    var isSelectedMovie: Bool = false
-    var isSelected2: Bool = false {
-        didSet {
-            categoryNameLabel.highlightedTextColor = isSelected2 ? UIColor.blue : UIColor.clear
-        }
-    }
+    var indexPath: IndexPath?    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,8 +35,5 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         delegate?.labelClicked(indexPath: indexPath)
         
     }
-    
-    func toggleIsSelected() {
-        isSelected2.toggle()
-    }
+   
 }

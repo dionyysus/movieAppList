@@ -13,9 +13,8 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     private var viewModel: HomeViewModel?
 
     var searching = false
-    var isFiltered = true
-/** Added `searchedFilm` Property which will be set to the value of  `searchBar.text`
- */ var searchedFilm = String()
+    var isFiltered = false
+    var searchedFilm = String()
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var moviesCollectionView: UICollectionView!
@@ -50,8 +49,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         if let searchText = sender.text{
             viewModel?.filteredMovies = searchText.isEmpty ? viewModel?.movies : viewModel?.movies?.filter { movie in
                 if let title = movie.title?.lowercased() {
-/**                 set the `searchedFilm` property to the unwrapped value of the `searchBar.text`
-*/                  self.searchedFilm = searchText
+                    self.searchedFilm = searchText
                     return title.contains(searchText.lowercased())
                 }
                 return false
@@ -65,20 +63,14 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     }
     
   @IBAction func searchTapped(_ sender: Any) {
-/** These MUST be set to `false`, if not, then the `UICollectionViewDataSource` methods will not trigger for the right `collectionView` or the correct `[Movie]`
-*/  searching = false
-    isFiltered = false
-/** This line replaces spaces with `%20` for appropriate URL Creation, returns an optional, thus the unwrapping
-*/  guard let searched = searchedFilm.addingPercentEncoding(withAllowedCharacters: .alphanumerics) else { return }
-    viewModel?.fetchMovie(named: searched) { [weak self] in
-        self?.moviesCollectionView.reloadData()
+      
+      searching = false
+      isFiltered = false
+      self.moviesCollectionView.reloadData()
+
+      }
+
     }
-  }
-  
-  @objc func labelTapped() {
-        print("category lapel tapped")
-    }
-}
 
 extension HomeViewController: UICollectionViewDataSource{
     
@@ -87,7 +79,7 @@ extension HomeViewController: UICollectionViewDataSource{
         if collectionView == moviesCollectionView {
             let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
             let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-                        
+            gotoDetailController.indexPath = indexPath
             var movie = viewModel?.categoryMovies?[indexPath.row]  //save index-collections
             if searching{
                 movie = viewModel?.filteredMovies?[indexPath.row]
@@ -185,9 +177,6 @@ extension HomeViewController: UICollectionViewDataSource{
              
             categoryCell.categoryNameLabel.text = viewModel?.genres?[indexPath.row].name
 
-            if categoryCell.isSelected {
-              categoryCell.categoryNameLabel.highlightedTextColor = UIColor.blue
-            }
 
             categoryCell.delegate = self
             categoryCell.indexPath = indexPath
@@ -218,7 +207,11 @@ extension HomeViewController: UICollectionViewDelegate{
 
 extension HomeViewController: CategoriesCellDelegate {
     func labelClicked(indexPath: IndexPath) {
-        viewModel?.categoryMovies = viewModel?.movies?.filter{ $0.genreIDS.contains(viewModel?.genres?[indexPath.row].id ?? 0) ?? false }
+        
+        isFiltered = true
+        searching = false
+        
+        viewModel?.categoryMovies = viewModel?.movies?.filter{ $0.genreIDS.contains(viewModel?.genres?[indexPath.row].id ?? 0) }
           moviesCollectionView.reloadData()
     }
 }
