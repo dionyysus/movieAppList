@@ -23,8 +23,13 @@ class RealmManager {
     }
     
     func deleteMovie(_ movie: Movie) {
-        try! realm.write {
-            realm.delete(movie)
+        
+        do {
+            try realm.write {
+                realm.delete(movie)
+            }
+        } catch {
+            print("Failed to delete movie property: \(error.localizedDescription)")
         }
     }
     

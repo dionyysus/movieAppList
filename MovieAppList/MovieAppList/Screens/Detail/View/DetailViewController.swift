@@ -62,14 +62,28 @@ class DetailViewController: UIViewController {
     @objc private func favoriteTappedImageView() {
         let _ = RealmManager.shared
         let favoriteMovies = RealmManager.shared.getAllMovies()
-        if favoriteMovies.contains(where: { $0.id == viewModel?.movie?.id }) {
-            RealmManager.shared.deleteMovie((viewModel?.movie)!)
-            movieFavoriteImageView.image = UIImage(named: Constant.heart)
+//        if favoriteMovies.contains(where: { $0.id == viewModel?.movie?.id }) {
+//            RealmManager.shared.deleteMovie((viewModel?.movie)!)
+//            movieFavoriteImageView.image = UIImage(named: Constant.heart)
+//        } else {
+//            RealmManager.shared.saveMovie((viewModel?.movie)!)
+//            movieFavoriteImageView.image = UIImage(named: Constant.heartFilled)
+//        }
+        
+        if let movie = viewModel?.movie {
+            if favoriteMovies.contains(where: { $0.id == movie.id }) {
+                RealmManager.shared.deleteMovie(movie)
+                movieFavoriteImageView.image = UIImage(named: Constant.heart)
+            } else {
+                RealmManager.shared.saveMovie(movie)
+                movieFavoriteImageView.image = UIImage(named: Constant.heartFilled)
+            }
         } else {
-            RealmManager.shared.saveMovie((viewModel?.movie)!)
-            movieFavoriteImageView.image = UIImage(named: Constant.heartFilled)
+            // viewModel?.movie nesnesi geçerli değilse, hata işleme yapılabilir veya uygun bir işlem gerçekleştirilebilir.
         }
     }
+    
+    
     
     func prepare(movie: Movie, firstGenre: Genre?) {
         viewModel = DetailViewModel(movie: movie, firstGenre: firstGenre)

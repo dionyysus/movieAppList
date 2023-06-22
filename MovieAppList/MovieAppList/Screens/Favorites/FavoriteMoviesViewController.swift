@@ -106,7 +106,9 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
 
 extension FavoriteMoviesViewController: FavoritesCellDelegate{
     func imageViewClicked(indexPath: IndexPath) {
-        let movie = RealmManager.shared.getAllMovies()[indexPath.row]
+        
+        let movies = RealmManager.shared.getAllMovies() 
+        let movie = movies[indexPath.row]
         RealmManager.shared.deleteMovie(movie)
         favoriteMoviesCollectionView.reloadData()
     }
