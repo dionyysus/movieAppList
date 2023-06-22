@@ -20,7 +20,6 @@ class DetailViewController: UIViewController {
     
     var movieId: Int? = 0
     let favoriteMovies = RealmManager.shared.getAllMovies()
-    var indexPath: IndexPath?
     
     @IBOutlet weak var movieDetailNameLabel: UILabel!
     @IBOutlet weak var movieDetailImageView: UIImageView!
@@ -64,8 +63,6 @@ class DetailViewController: UIViewController {
         let _ = RealmManager.shared
         let favoriteMovies = RealmManager.shared.getAllMovies()
         if favoriteMovies.contains(where: { $0.id == viewModel?.movie?.id }) {
-            let movie = RealmManager.shared.getAllMovies()[indexPath?.row ?? 0]
-            RealmManager.shared.deleteMovie(movie)
             RealmManager.shared.deleteMovie((viewModel?.movie)!)
             movieFavoriteImageView.image = UIImage(named: Constant.heart)
         } else {

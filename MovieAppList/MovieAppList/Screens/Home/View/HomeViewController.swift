@@ -79,7 +79,7 @@ extension HomeViewController: UICollectionViewDataSource{
         if collectionView == moviesCollectionView {
             let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
             let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-            gotoDetailController.indexPath = indexPath
+                        
             var movie = viewModel?.categoryMovies?[indexPath.row]  //save index-collections
             if searching{
                 movie = viewModel?.filteredMovies?[indexPath.row]
