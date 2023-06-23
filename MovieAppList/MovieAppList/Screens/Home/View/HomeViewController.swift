@@ -7,7 +7,6 @@
 
 import UIKit
 
-// TODO: search yap
 class HomeViewController: UIViewController, UITextFieldDelegate {
 
     private var viewModel: HomeViewModel?
@@ -87,11 +86,13 @@ extension HomeViewController: UICollectionViewDataSource{
             }else if isFiltered{
                 movie = viewModel?.categoryMovies?[indexPath.row]
             }
-            let firstGenre = viewModel?.genres?.filter { $0.id == (movie?.genreIDS.first ?? 0) }.first
+            let movieGenres = viewModel?.movies?[indexPath.row].genreIDS
+            let genreName = viewModel?.genres?.filter { genre in
+                movieGenres!.contains(genre.id ?? 0) // ! ekledim movieGenres yanına (realm için)
+            }.map { $0.name ?? "" }.joined(separator: ",") ?? ""
             gotoDetailController.movieId = indexPath.row
-            
-            if let movie, let firstGenre {
-                gotoDetailController.prepare(movie: movie, firstGenre: firstGenre)
+            if let movie {
+                gotoDetailController.prepare(movie: movie, genreName: genreName)
                 navigationController?.pushViewController(gotoDetailController, animated: true)
             }
             return
@@ -218,4 +219,5 @@ extension HomeViewController: CategoriesCellDelegate {
     }
 }
     
+
 

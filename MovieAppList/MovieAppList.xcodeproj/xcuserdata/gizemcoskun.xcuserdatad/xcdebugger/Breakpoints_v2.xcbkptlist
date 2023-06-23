@@ -7,80 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "911932DC-048D-4F55-B9A2-C5A620671E53"
+            uuid = "CCCEBD15-BDBC-40E4-A050-34398B3945DC"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MovieAppList/Screens/Home/View/HomeViewController.swift"
+            filePath = "MovieAppList/Screens/Favorites/FavoriteMoviesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "searchTapped(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "911932DC-048D-4F55-B9A2-C5A620671E53 - ab911f48fc78be36"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MovieAppList.HomeViewController.searchTapped(Any) -&gt; ()"
-                  moduleName = "MovieAppList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gizemcoskun/Creative%20Cloud%20Files/MovieAppProject/MovieAppList/MovieAppList/MovieAppList/Screens/Home/View/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "204">
-               </Location>
-               <Location
-                  uuid = "911932DC-048D-4F55-B9A2-C5A620671E53 - ab911f48fc78bfd5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MovieAppList.HomeViewController.searchTapped(Any) -&gt; ()"
-                  moduleName = "MovieAppList"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/gizemcoskun/Creative%20Cloud%20Files/MovieAppProject/MovieAppList/MovieAppList/MovieAppList/Screens/Home/View/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "69"
-                  endingLineNumber = "69"
-                  offsetFromSymbolStart = "164">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2D908824-C871-4DBE-A0A9-834DC10D06BA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MovieAppList/Screens/Detail/View/DetailViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "favoriteTappedImageView()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B0F0C04E-A9ED-4B1A-8A18-1B75031752F9"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MovieAppList/Screens/Detail/View/DetailViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "favoriteTappedImageView()"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

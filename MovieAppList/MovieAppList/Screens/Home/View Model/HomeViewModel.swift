@@ -45,8 +45,7 @@ class HomeViewModel {
     Here, rather than using the Singleton of `APIManager.shared`, we use the private optional instance so we can set its `query` property.
 */  func fetchMovie(named name: String, completion: @escaping () -> Void) {
     apiManager = APIManager.shared
-/**     Unwrapping to ensure that everything exists before making network calls
-*/      guard let apiManager = apiManager else { return }
+      guard let apiManager = apiManager else { return }
         apiManager.query = name
         apiManager.execute(url: apiManager.searchApiURL) { (data: MovieResponse?) in
             self.filteredMovies = data?.results ?? []

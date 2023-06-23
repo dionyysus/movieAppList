@@ -10,11 +10,11 @@ import Foundation
 class DetailViewModel{
     
     var movie: Movie?
-    var firstGenre: Genre?
+    var genreName: String?
     
-    init(movie: Movie, firstGenre: Genre?) {
+    init(movie: Movie, genreName: String?) {
         self.movie = movie
-        self.firstGenre = firstGenre
+        self.genreName = genreName
     }
     
 }

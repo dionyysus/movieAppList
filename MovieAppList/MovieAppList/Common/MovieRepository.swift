@@ -16,13 +16,13 @@ class RealmManager {
         realm = try! Realm()
     }
     
-    func saveMovie(_ movie: Movie) {
+    func saveMovie(_ movie: MovieEntity) {
         try! realm.write {
             realm.add(movie, update: .modified)
         }
     }
     
-    func deleteMovie(_ movie: Movie) {
+    func deleteMovie(_ movie: MovieEntity) {
         
         do {
             try realm.write {
@@ -33,24 +33,13 @@ class RealmManager {
         }
     }
     
-    func getAllMovies() -> Results<Movie> {
-        return realm.objects(Movie.self)
+    func getAllMovies() -> Results<MovieEntity> {
+        return realm.objects(MovieEntity.self)
     }
     
-    func getMovie(withID id: Int) -> Movie? {
-        return realm.object(ofType: Movie.self, forPrimaryKey: id)
-    }
-    
-    // Update a movie's property
-    func updateMovieProperty(movie: Movie, newValue: Genre?) {
-        do {
-            try realm.write {
-                movie.firstGenre = newValue
-            }
-            print("Movie property updated successfully")
-        } catch {
-            print("Failed to update movie property: \(error.localizedDescription)")
-        }
+    func getMovie(withID id: Int) -> MovieEntity? {
+        return realm.object(ofType: MovieEntity.self, forPrimaryKey: id)
     }
 }
+
 

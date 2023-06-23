@@ -68,11 +68,10 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
             
             let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
             let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-            let movie = RealmManager.shared.getAllMovies()[indexPath.row]
-            let firstGenre = movie.firstGenre
-            
+            let movieEntity = RealmManager.shared.getAllMovies()[indexPath.row]
+            let movie = Movie.mapToItem(model: movieEntity)
             gotoDetailController.movieId = indexPath.row
-            gotoDetailController.prepare(movie: movie, firstGenre: firstGenre)
+            gotoDetailController.prepare(movie: movie, genreName: movie.genreName ?? "")
             print(viewModel?.firstGenre ?? 0)
             navigationController?.pushViewController(gotoDetailController, animated: true)
             return
@@ -96,7 +95,7 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
         let imgPosterPath = favorites.posterPath ?? ""
         let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
         cell.favoriteMovieImageView.loadImg(url: imgFullPath!)
-        cell.favoriteCategoryNameLabel.text = favorites.firstGenre?.name
+        cell.favoriteCategoryNameLabel.text = favorites.genreName
         cell.delegate = self
         cell.indexPath = indexPath
         
@@ -107,7 +106,7 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
 extension FavoriteMoviesViewController: FavoritesCellDelegate{
     func imageViewClicked(indexPath: IndexPath) {
         
-        let movies = RealmManager.shared.getAllMovies() 
+        let movies = RealmManager.shared.getAllMovies()
         let movie = movies[indexPath.row]
         RealmManager.shared.deleteMovie(movie)
         favoriteMoviesCollectionView.reloadData()

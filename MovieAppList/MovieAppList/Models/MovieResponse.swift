@@ -17,26 +17,26 @@ struct GenreResponse: Codable {
     let genres: [Genre]?
 }
 // MARK: - Genre
-class Genre: Object, Codable {
-    @Persisted  var id: Int?
-    @Persisted var name: String?
+class Genre: Codable {
+    var id: Int?
+    var name: String?
 }
 
-class Movie: Object, Codable {
-    @Persisted(primaryKey: true) var id: Int
-    @Persisted var adult: Bool?
-    @Persisted var backdropPath: String?
-    @Persisted var genreIDS: List<Int?>
-    @Persisted var originalTitle: String?
-    @Persisted var overview: String?
-    @Persisted var popularity: Double?
-    @Persisted var posterPath: String?
-    @Persisted var releaseDate: String?
-    @Persisted var title: String?
-    @Persisted var video: Bool?
-    @Persisted var voteAverage: Double?
-    @Persisted var voteCount: Int?
-    @Persisted var firstGenre: Genre?
+class Movie: Codable {
+    var id: Int
+    var adult: Bool?
+    var backdropPath: String?
+    var genreIDS: List<Int?>
+    var originalTitle: String?
+    var overview: String?
+    var popularity: Double?
+    var posterPath: String?
+    var releaseDate: String?
+    var title: String?
+    var video: Bool?
+    var voteAverage: Double?
+    var voteCount: Int?
+    var genreName: String?
     
     enum CodingKeys: String, CodingKey {
         case id, adult
@@ -51,12 +51,11 @@ class Movie: Object, Codable {
         case voteCount = "vote_count"
     }
     
-    convenience init(id: Int, adult: Bool, backdropPath: String,
-                     genreIDS: List<Int?>, originalTitle: String?,
-                     overview: String, popularity: Double?, posterPath: String,
-                     releaseDate: String, title: String, video: Bool,
-                     voteAverage: Double, voteCount: Int, firstGenre: Genre?) {
-        self.init()
+    init(id: Int, adult: Bool, backdropPath: String,
+         genreIDS: List<Int?>, originalTitle: String?,
+         overview: String, popularity: Double?, posterPath: String,
+         releaseDate: String, title: String, video: Bool,
+         voteAverage: Double, voteCount: Int, genreName: String?) {
         self.id = id
         self.adult = adult
         self.backdropPath = backdropPath
@@ -70,7 +69,17 @@ class Movie: Object, Codable {
         self.video = video
         self.voteAverage = voteAverage
         self.voteCount = voteCount
-        self.firstGenre = firstGenre
+        self.genreName = genreName
+    }
+    
+    static func mapToItem(model: MovieEntity) -> Movie {
+        return Movie(id: model.id, adult: model.adult ?? false,
+                           backdropPath: model.backdropPath ?? "", genreIDS: model.genreIDS,
+                           originalTitle: model.originalTitle, overview: model.overview ?? "",
+                           popularity: model.popularity, posterPath: model.posterPath ?? "",
+                           releaseDate: model.releaseDate ?? "", title: model.title ?? "",
+                           video: model.video ?? false, voteAverage: model.voteAverage ?? 0.0,
+                           voteCount: model.voteCount ?? 0, genreName: model.genreName)
     }
 }
 enum OriginalLanguage: String, Codable {

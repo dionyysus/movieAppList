@@ -19,7 +19,6 @@ class DetailViewController: UIViewController {
     private var viewModel: DetailViewModel?
     
     var movieId: Int? = 0
-    let favoriteMovies = RealmManager.shared.getAllMovies()
     
     @IBOutlet weak var movieDetailNameLabel: UILabel!
     @IBOutlet weak var movieDetailImageView: UIImageView!
@@ -30,11 +29,9 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         title = viewModel?.movie?.title
         
         let tapFavorite = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.favoriteTappedImageView))
-        
         movieFavoriteImageView.addGestureRecognizer(tapFavorite)
         movieFavoriteImageView.isUserInteractionEnabled = true
         
@@ -48,34 +45,23 @@ class DetailViewController: UIViewController {
         movieDetailImageView.loadImg(url: imgFullPath!)
         
         movieDetailDescriptionLabel.text = viewModel?.movie?.overview
-        movieDetailCategoryLabel.text = viewModel?.firstGenre?.name
+        movieDetailCategoryLabel.text = viewModel?.genreName?.components(separatedBy: ",").first
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        RealmManager.shared.updateMovieProperty(movie: (viewModel?.movie)!, newValue: viewModel?.firstGenre)
-        //viewModel?.movie?.firstGenre = viewModel?.firstGenre
         movieFavoriteImageView.image = isFavorite() ? UIImage(named: Constant.heartFilled) :
         UIImage(named: Constant.heart)
-        
     }
     
     @objc private func favoriteTappedImageView() {
-        let _ = RealmManager.shared
-        let favoriteMovies = RealmManager.shared.getAllMovies()
-//        if favoriteMovies.contains(where: { $0.id == viewModel?.movie?.id }) {
-//            RealmManager.shared.deleteMovie((viewModel?.movie)!)
-//            movieFavoriteImageView.image = UIImage(named: Constant.heart)
-//        } else {
-//            RealmManager.shared.saveMovie((viewModel?.movie)!)
-//            movieFavoriteImageView.image = UIImage(named: Constant.heartFilled)
-//        }
-        
         if let movie = viewModel?.movie {
-            if favoriteMovies.contains(where: { $0.id == movie.id }) {
-                RealmManager.shared.deleteMovie(movie)
+            movie.genreName = viewModel?.genreName
+            let entityMovie = MovieEntity.mapToEntity(model: movie)
+            if let movieToDelete = RealmManager.shared.getMovie(withID: entityMovie.id) {
+                RealmManager.shared.deleteMovie(movieToDelete)
                 movieFavoriteImageView.image = UIImage(named: Constant.heart)
             } else {
-                RealmManager.shared.saveMovie(movie)
+                RealmManager.shared.saveMovie(entityMovie)
                 movieFavoriteImageView.image = UIImage(named: Constant.heartFilled)
             }
         } else {
@@ -83,16 +69,14 @@ class DetailViewController: UIViewController {
         }
     }
     
-    
-    
-    func prepare(movie: Movie, firstGenre: Genre?) {
-        viewModel = DetailViewModel(movie: movie, firstGenre: firstGenre)
+    func prepare(movie: Movie, genreName: String) {
+        viewModel = DetailViewModel(movie: movie, genreName: genreName)
     }
     
     func isFavorite() -> Bool {
-        return favoriteMovies.contains(where: { $0.id == viewModel?.movie?.id })
+        return RealmManager.shared.getAllMovies().contains(where: { $0.id == viewModel?.movie?.id })
     }
-    
 }
+
 
 
