@@ -20,6 +20,10 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
 
+    
+    var isSelectedCell = false
+    var deSelectCell = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Home"
@@ -63,7 +67,6 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     }
     
   @IBAction func searchTapped(_ sender: Any) {
-      
       searching = false
       isFiltered = false
       selectedCategory = true
@@ -96,8 +99,39 @@ extension HomeViewController: UICollectionViewDataSource{
                 navigationController?.pushViewController(gotoDetailController, animated: true)
             }
             return
+        } else if collectionView == categoryCollectionView {
+            if let cell = categoryCollectionView.cellForItem(at: indexPath) as? CategoriesCollectionViewCell {
+                if !isSelectedCell {
+                    cell.backgroundColor = .lightGray
+                    cellClicked(indexPath: indexPath)
+                    isSelectedCell = true
+                } else {
+                    if !deSelectCell {
+                        cell.backgroundColor = .white
+                        isSelectedCell = false
+                        viewModel?.fetchMovies { [weak self] in
+                            self?.moviesCollectionView.reloadData()
+                            self?.categoryCollectionView.reloadData()
+                        }
+                    }
+                    
+                }
+               
+            }
+        }
+
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if collectionView == categoryCollectionView {
+            if let cell = categoryCollectionView.cellForItem(at: indexPath) as? CategoriesCollectionViewCell {
+                cell.backgroundColor = .white
+                deSelectCell = false
+                isSelectedCell = false
+            }
         }
     }
+    
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -172,18 +206,21 @@ extension HomeViewController: UICollectionViewDataSource{
                 viewModel?.movies?[indexPath.row].genreIDS.forEach{print("\($0)")}
             }
             return cell
+            
         }
 
         else if collectionView == categoryCollectionView {
             guard let categoryCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCollectionViewCell", for: indexPath) as? CategoriesCollectionViewCell else {
                 return UICollectionViewCell()
             }
-             
             categoryCell.categoryNameLabel.text = viewModel?.genres?[indexPath.row].name
 
+            if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first, selectedIndexPath == indexPath {
+                categoryCell.backgroundColor = .lightGray
+            } else {
+                categoryCell.backgroundColor = .white
+            }
 
-            categoryCell.delegate = self
-            categoryCell.indexPath = indexPath
             return categoryCell
         }
         return UICollectionViewCell()
@@ -209,9 +246,8 @@ extension HomeViewController: UICollectionViewDelegate{
        }
 }
 
-extension HomeViewController: CategoriesCellDelegate {
-    func labelClicked(indexPath: IndexPath) {
-        
+extension HomeViewController {
+    func cellClicked(indexPath: IndexPath) {
         isFiltered = true
         searching = false
         viewModel?.categoryMovies = viewModel?.movies?.filter{ $0.genreIDS.contains(viewModel?.genres?[indexPath.row].id ?? 0) }
@@ -219,5 +255,6 @@ extension HomeViewController: CategoriesCellDelegate {
     }
 }
     
+
 
 

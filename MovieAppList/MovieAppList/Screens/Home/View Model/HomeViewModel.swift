@@ -40,10 +40,8 @@ class HomeViewModel {
             }
         }
     }
-  
-/** Fetch Movies by Name Method
-    Here, rather than using the Singleton of `APIManager.shared`, we use the private optional instance so we can set its `query` property.
-*/  func fetchMovie(named name: String, completion: @escaping () -> Void) {
+    
+    func fetchMovie(named name: String, completion: @escaping () -> Void) {
     apiManager = APIManager.shared
       guard let apiManager = apiManager else { return }
         apiManager.query = name

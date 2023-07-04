@@ -14,6 +14,7 @@ private extension FavoriteMoviesViewController{
         static let heart = "heart-movie"
     }
 }
+
 class FavoriteMoviesViewController: UIViewController {
 
     @IBOutlet weak var favoriteMoviesCollectionView: UICollectionView!

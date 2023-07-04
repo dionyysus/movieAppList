@@ -64,8 +64,6 @@ class DetailViewController: UIViewController {
                 RealmManager.shared.saveMovie(entityMovie)
                 movieFavoriteImageView.image = UIImage(named: Constant.heartFilled)
             }
-        } else {
-            // viewModel?.movie nesnesi geçerli değilse, hata işleme yapılabilir veya uygun bir işlem gerçekleştirilebilir.
         }
     }
     
