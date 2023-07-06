@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GzX-6J-szO">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GzX-6J-szO">
                                 <rect key="frame" x="0.0" y="205" width="393" height="43"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="196" translatesAutoresizingMaskIntoConstraints="NO" id="Bfu-ow-3WT">
@@ -42,7 +42,7 @@
                                     <constraint firstAttribute="height" constant="43" id="ty2-2g-Dtc"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bk3-vS-QGF">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bk3-vS-QGF">
                                 <rect key="frame" x="0.0" y="248" width="393" height="52"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -99,7 +99,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNw-3y-QkU">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mNw-3y-QkU">
                                 <rect key="frame" x="0.0" y="300" width="393" height="43"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="226" translatesAutoresizingMaskIntoConstraints="NO" id="CS0-j4-bfD">
@@ -123,7 +123,7 @@
                                     <constraint firstItem="CS0-j4-bfD" firstAttribute="leading" secondItem="mNw-3y-QkU" secondAttribute="leading" constant="10" id="hc2-iZ-iko"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="N6h-v3-jd1" userLabel="Movies Collection View">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="N6h-v3-jd1" userLabel="Movies Collection View">
                                 <rect key="frame" x="0.0" y="343" width="393" height="426"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iKr-gU-YiT">
@@ -144,10 +144,10 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a70-r4-IY7">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a70-r4-IY7">
                                 <rect key="frame" x="0.0" y="103" width="389" height="102"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ksl-uP-rde">
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ksl-uP-rde">
                                         <rect key="frame" x="8" y="32" width="373" height="34"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search movie" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8gg-XQ-cpq">
@@ -230,11 +230,22 @@
                     <connections>
                         <segue destination="iMB-hY-FLA" kind="relationship" relationship="viewControllers" id="fC4-5N-io0"/>
                         <segue destination="ZyQ-gk-6Z0" kind="relationship" relationship="viewControllers" id="zH8-xz-O6j"/>
+                        <segue destination="eYN-yz-MVZ" kind="relationship" relationship="viewControllers" id="lmm-ek-NLh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T5u-hZ-roB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8635.8778625954201" y="-39.436619718309863"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="1P0-JL-pR6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Search" id="eYN-yz-MVZ" userLabel="Search" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Ox2-l6-PM1"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XTk-zz-8Rb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8376" y="456"/>
         </scene>
         <!--FavoriteMovies-->
         <scene sceneID="EhB-Oq-gng">
@@ -244,7 +255,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wRd-EK-UMl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8635" y="449"/>
+            <point key="canvasLocation" x="8885" y="456"/>
         </scene>
         <!--Home-->
         <scene sceneID="UDo-yX-wUn">
