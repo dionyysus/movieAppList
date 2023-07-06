@@ -10,13 +10,13 @@ import UIKit
 class HomeViewController: UIViewController, UITextFieldDelegate {
 
     private var viewModel: HomeViewModel?
-
-    var searching = false
-    var isFiltered = false
+//
+//    var searching = false
+//    var isFiltered = false
     var selectedCategory = false
     var searchedFilm = String()
 
-    @IBOutlet weak var searchBar: UISearchBar!
+    //@IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var moviesCollectionView: UICollectionView!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
 
@@ -49,31 +49,33 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    @IBAction func searchHandler(_ sender: UITextField) {
-        if let searchText = sender.text{
-            viewModel?.filteredMovies = searchText.isEmpty ? viewModel?.movies : viewModel?.movies?.filter { movie in
-                if let title = movie.title?.lowercased() {
-                    self.searchedFilm = searchText
-                    return title.contains(searchText.lowercased())
-                }
-                
-                return false
-            }
-            guard let searched = searchedFilm.addingPercentEncoding(withAllowedCharacters: .alphanumerics) else { return }
-                viewModel?.fetchMovie(named: searched) { [weak self] in
-                  self?.moviesCollectionView.reloadData()
-            }
-            //selectedCategory = true
-
-            searching = true
-        }
-        if sender.text!.isEmpty {
-            searching = false
-        }
-        moviesCollectionView.reloadData()
-        
-        
-    }
+//    @IBAction func searchHandler(_ sender: UITextField) {
+//        if let searchText = sender.text{
+//            viewModel?.filteredMovies = searchText.isEmpty ? viewModel?.movies : viewModel?.movies?.filter { movie in
+//                if let title = movie.title?.lowercased() {
+//                    self.searchedFilm = searchText
+//                    return title.contains(searchText.lowercased())
+//                }
+//
+//                return false
+//            }
+//            guard let searched = searchedFilm.addingPercentEncoding(withAllowedCharacters: .alphanumerics) else { return }
+//                viewModel?.fetchMovie(named: searched) { [weak self] in
+//                  self?.moviesCollectionView.reloadData()
+//            }
+//            //selectedCategory = true
+//
+//            searching = true
+//        }
+//        if sender.text!.isEmpty {
+//            searching = false
+//        }
+//        moviesCollectionView.reloadData()
+//
+//
+//    }
+    
+    
 //    @IBAction func searchTapped(_ sender: Any) {
 //        searching = false
 //        isFiltered = false
@@ -98,11 +100,11 @@ extension HomeViewController: UICollectionViewDataSource{
                         
             var movie = viewModel?.movies?[indexPath.row]  //save index-collections
             
-            if searching{
-                movie = viewModel?.filteredMovies?[indexPath.row]
-            }else if isFiltered{
-                movie = viewModel?.categoryMovies?[indexPath.row]
-            }
+//            if searching{
+//                movie = viewModel?.filteredMovies?[indexPath.row]
+//            }else if isFiltered{
+//                movie = viewModel?.categoryMovies?[indexPath.row]
+//            }
             let movieGenres = viewModel?.movies?[indexPath.row].genreIDS
             let genreName = viewModel?.genres?.filter { genre in
                 movieGenres!.contains(genre.id ?? 0) // ! ekledim movieGenres yanına (realm için)
@@ -150,11 +152,12 @@ extension HomeViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == moviesCollectionView {
-            if searching {
-                return viewModel?.filteredMovies?.count ?? 0
-            } else if isFiltered {
-                return viewModel?.categoryMovies?.count ?? 0
-            } else if selectedCategory {
+//            if searching {
+//                return viewModel?.filteredMovies?.count ?? 0
+//            } else if isFiltered {
+//                return viewModel?.categoryMovies?.count ?? 0
+//            }
+            if selectedCategory {
                 return viewModel?.movies?.count ?? 0
             }else {
                 return viewModel?.movies?.count ?? 0
@@ -172,53 +175,71 @@ extension HomeViewController: UICollectionViewDataSource{
             guard let cell = moviesCollectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            if searching {
-                cell.movieNameLabel.text = viewModel?.filteredMovies?[indexPath.row].title
-                cell.movieVoteLabel.text = String(viewModel?.filteredMovies?[indexPath.row].voteAverage ?? 0.0)
+            
+            cell.movieNameLabel.text = viewModel?.movies?[indexPath.row].title
+            cell.movieVoteLabel.text = String(viewModel?.movies?[indexPath.row].voteAverage ?? 0.0)
 
-                let imgPosterPath = viewModel?.filteredMovies?[indexPath.row].posterPath ?? ""
-                let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
+            let imgPosterPath = viewModel?.movies?[indexPath.row].posterPath ?? ""
+            let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
 
-                if let imageFullPath = imgFullPath {
-                    cell.movieImageView.loadImg(url: imageFullPath)
-                    viewModel?.filteredMovies?[indexPath.row].genreIDS.forEach{print("filtered movie:\($0)")}
-                }
-                
-            } else if isFiltered {
-                cell.movieNameLabel.text = viewModel?.categoryMovies?[indexPath.row].title
-                cell.movieVoteLabel.text = String(viewModel?.categoryMovies?[indexPath.row].voteAverage ?? 0.0)
-
-                let imgPosterPath = viewModel?.categoryMovies?[indexPath.row].posterPath ?? ""
-                let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
-                               
-                if let imageFullPath = imgFullPath{
-                    cell.movieImageView.loadImg(url: imageFullPath)
-                }
-             
-                let movieGenres = viewModel?.categoryMovies?[indexPath.row].genreIDS
-                let genreName = viewModel?.genres?.filter { genre in
-                    movieGenres!.contains(genre.id ?? 0) // ! ekledim movieGenres yanına (realm için)
-                }.map { $0.name ?? "" }.joined(separator: ",")
-                                
-                cell.movieCategoryNameLabel.text = genreName
-                
-            } else {
-                cell.movieNameLabel.text = viewModel?.movies?[indexPath.row].title
-                cell.movieVoteLabel.text = String(viewModel?.movies?[indexPath.row].voteAverage ?? 0.0)
-
-                let imgPosterPath = viewModel?.movies?[indexPath.row].posterPath ?? ""
-                let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
-
-                cell.movieImageView.loadImg(url: imgFullPath!)
-                
-                let movieGenres = viewModel?.movies?[indexPath.row].genreIDS
-                let genreName = viewModel?.genres?.filter { genre in
-                    movieGenres!.contains(genre.id ?? 0) // ! ekledim movieGenres yanına (realm için)
-                }.map { $0.name ?? "" }.joined(separator: ",")
-                
-                cell.movieCategoryNameLabel.text = genreName
-                viewModel?.movies?[indexPath.row].genreIDS.forEach{print("\($0)")}
-            }
+            cell.movieImageView.loadImg(url: imgFullPath!)
+            
+            let movieGenres = viewModel?.movies?[indexPath.row].genreIDS
+            let genreName = viewModel?.genres?.filter { genre in
+                movieGenres!.contains(genre.id ?? 0) // ! ekledim movieGenres yanına (realm için)
+            }.map { $0.name ?? "" }.joined(separator: ",")
+            
+            cell.movieCategoryNameLabel.text = genreName
+            viewModel?.movies?[indexPath.row].genreIDS.forEach{print("\($0)")}
+            
+//            if searching {
+//                cell.movieNameLabel.text = viewModel?.filteredMovies?[indexPath.row].title
+//                cell.movieVoteLabel.text = String(viewModel?.filteredMovies?[indexPath.row].voteAverage ?? 0.0)
+//
+//                let imgPosterPath = viewModel?.filteredMovies?[indexPath.row].posterPath ?? ""
+//                let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
+//
+//                if let imageFullPath = imgFullPath {
+//                    cell.movieImageView.loadImg(url: imageFullPath)
+//                    viewModel?.filteredMovies?[indexPath.row].genreIDS.forEach{print("filtered movie:\($0)")}
+//                }
+//
+//            } else if isFiltered {
+//                cell.movieNameLabel.text = viewModel?.categoryMovies?[indexPath.row].title
+//                cell.movieVoteLabel.text = String(viewModel?.categoryMovies?[indexPath.row].voteAverage ?? 0.0)
+//
+//                let imgPosterPath = viewModel?.categoryMovies?[indexPath.row].posterPath ?? ""
+//                let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
+//
+//                if let imageFullPath = imgFullPath{
+//                    cell.movieImageView.loadImg(url: imageFullPath)
+//                }
+//
+//                let movieGenres = viewModel?.categoryMovies?[indexPath.row].genreIDS
+//                let genreName = viewModel?.genres?.filter { genre in
+//                    movieGenres!.contains(genre.id ?? 0) // ! ekledim movieGenres yanına (realm için)
+//                }.map { $0.name ?? "" }.joined(separator: ",")
+//
+//                cell.movieCategoryNameLabel.text = genreName
+//
+//            }
+//                else {
+//                cell.movieNameLabel.text = viewModel?.movies?[indexPath.row].title
+//                cell.movieVoteLabel.text = String(viewModel?.movies?[indexPath.row].voteAverage ?? 0.0)
+//
+//                let imgPosterPath = viewModel?.movies?[indexPath.row].posterPath ?? ""
+//                let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
+//
+//                cell.movieImageView.loadImg(url: imgFullPath!)
+//
+//                let movieGenres = viewModel?.movies?[indexPath.row].genreIDS
+//                let genreName = viewModel?.genres?.filter { genre in
+//                    movieGenres!.contains(genre.id ?? 0) // ! ekledim movieGenres yanına (realm için)
+//                }.map { $0.name ?? "" }.joined(separator: ",")
+//
+//                cell.movieCategoryNameLabel.text = genreName
+//                viewModel?.movies?[indexPath.row].genreIDS.forEach{print("\($0)")}
+//            }
             return cell
             
         }
@@ -243,27 +264,27 @@ extension HomeViewController: UICollectionViewDataSource{
 
 extension HomeViewController: UICollectionViewDelegate{
 
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
-        let searchString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-
-           if searchString.isEmpty {
-               viewModel?.filteredMovies = viewModel?.movies
-           } else {
-               viewModel?.filteredMovies = (viewModel?.movies?.filter { movie in
-                 searching = true
-                   return (movie.title?.lowercased().contains(searchString.lowercased()))!
-               })
-           }
-           moviesCollectionView.reloadData()
-           return true
-       }
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//
+//        let searchString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+//
+//           if searchString.isEmpty {
+//               viewModel?.filteredMovies = viewModel?.movies
+//           } else {
+//               viewModel?.filteredMovies = (viewModel?.movies?.filter { movie in
+//                 searching = true
+//                   return (movie.title?.lowercased().contains(searchString.lowercased()))!
+//               })
+//           }
+//           moviesCollectionView.reloadData()
+//           return true
+//       }
 }
 
 extension HomeViewController {
     func cellClicked(indexPath: IndexPath) {
-        isFiltered = true
-        searching = false
+//        isFiltered = true
+//        searching = false
         viewModel?.categoryMovies = viewModel?.movies?.filter{ $0.genreIDS.contains(viewModel?.genres?[indexPath.row].id ?? 0) }
           moviesCollectionView.reloadData()
     }
