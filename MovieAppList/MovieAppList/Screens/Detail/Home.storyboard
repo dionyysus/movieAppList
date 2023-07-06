@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GzX-6J-szO">
-                                <rect key="frame" x="0.0" y="205" width="393" height="43"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="43"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="196" translatesAutoresizingMaskIntoConstraints="NO" id="Bfu-ow-3WT">
                                         <rect key="frame" x="10" y="5" width="373" height="33"/>
@@ -43,7 +43,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bk3-vS-QGF">
-                                <rect key="frame" x="0.0" y="248" width="393" height="52"/>
+                                <rect key="frame" x="0.0" y="146" width="393" height="52"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="vJo-ao-zBf"/>
@@ -100,7 +100,7 @@
                                 </cells>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mNw-3y-QkU">
-                                <rect key="frame" x="0.0" y="300" width="393" height="43"/>
+                                <rect key="frame" x="0.0" y="198" width="393" height="43"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="226" translatesAutoresizingMaskIntoConstraints="NO" id="CS0-j4-bfD">
                                         <rect key="frame" x="10" y="5" width="373" height="33"/>
@@ -124,7 +124,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="N6h-v3-jd1" userLabel="Movies Collection View">
-                                <rect key="frame" x="0.0" y="343" width="393" height="426"/>
+                                <rect key="frame" x="0.0" y="241" width="393" height="528"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iKr-gU-YiT">
                                     <size key="itemSize" width="388" height="242"/>
@@ -144,47 +144,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a70-r4-IY7">
-                                <rect key="frame" x="0.0" y="103" width="389" height="102"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ksl-uP-rde">
-                                        <rect key="frame" x="8" y="32" width="373" height="34"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search movie" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8gg-XQ-cpq">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="34"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="34" id="Mex-LT-vBA"/>
-                                                    <constraint firstAttribute="width" constant="335" id="fDf-hA-OxH"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <action selector="searchHandler:" destination="Y6W-OH-hqX" eventType="editingChanged" id="ffE-qt-Wxm"/>
-                                                </connections>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heo-gw-zzZ">
-                                                <rect key="frame" x="343" y="0.0" width="30" height="34"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="30" id="0SG-1V-GwV"/>
-                                                    <constraint firstAttribute="height" constant="30" id="duu-0x-2o0"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
-                                                <connections>
-                                                    <action selector="searchTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="BLE-cp-0tK"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Ksl-uP-rde" secondAttribute="bottom" constant="36" id="Og4-cn-rjv"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ksl-uP-rde" secondAttribute="trailing" constant="8" id="QZk-Zo-L01"/>
-                                    <constraint firstItem="Ksl-uP-rde" firstAttribute="leading" secondItem="a70-r4-IY7" secondAttribute="leading" constant="8" id="aOU-kM-XqF"/>
-                                    <constraint firstItem="Ksl-uP-rde" firstAttribute="top" secondItem="a70-r4-IY7" secondAttribute="top" constant="32" id="m3S-OY-Yjh"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -192,17 +151,15 @@
                             <constraint firstItem="GzX-6J-szO" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="4Bn-yO-1Qe"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="N6h-v3-jd1" secondAttribute="bottom" id="4hr-9D-YXT"/>
                             <constraint firstItem="bk3-vS-QGF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="5gb-2x-CyF"/>
-                            <constraint firstItem="a70-r4-IY7" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="8fn-iL-6Pg"/>
                             <constraint firstItem="N6h-v3-jd1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="9dB-Q1-EgY"/>
                             <constraint firstItem="N6h-v3-jd1" firstAttribute="top" secondItem="mNw-3y-QkU" secondAttribute="bottom" id="Mnj-rg-eLa"/>
                             <constraint firstItem="N6h-v3-jd1" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Mwf-Ja-KKd"/>
-                            <constraint firstItem="a70-r4-IY7" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="PfX-qF-g8M"/>
                             <constraint firstItem="GzX-6J-szO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Und-kw-ehe"/>
                             <constraint firstItem="bk3-vS-QGF" firstAttribute="top" secondItem="GzX-6J-szO" secondAttribute="bottom" id="Utx-nP-2n0"/>
+                            <constraint firstItem="GzX-6J-szO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="Xkm-ZI-kfn" userLabel="View.top = Safe Area.top"/>
                             <constraint firstItem="mNw-3y-QkU" firstAttribute="top" secondItem="bk3-vS-QGF" secondAttribute="bottom" id="Y3o-8Z-pWw"/>
                             <constraint firstItem="bk3-vS-QGF" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="bEa-C0-PgK"/>
                             <constraint firstItem="mNw-3y-QkU" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="eBj-6a-3Ce"/>
-                            <constraint firstItem="GzX-6J-szO" firstAttribute="top" secondItem="a70-r4-IY7" secondAttribute="bottom" id="fDC-KX-PHb"/>
                             <constraint firstItem="mNw-3y-QkU" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="uEI-oN-o2p"/>
                         </constraints>
                     </view>
@@ -230,22 +187,11 @@
                     <connections>
                         <segue destination="iMB-hY-FLA" kind="relationship" relationship="viewControllers" id="fC4-5N-io0"/>
                         <segue destination="ZyQ-gk-6Z0" kind="relationship" relationship="viewControllers" id="zH8-xz-O6j"/>
-                        <segue destination="eYN-yz-MVZ" kind="relationship" relationship="viewControllers" id="lmm-ek-NLh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T5u-hZ-roB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8635.8778625954201" y="-39.436619718309863"/>
-        </scene>
-        <!--Search-->
-        <scene sceneID="1P0-JL-pR6">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Search" id="eYN-yz-MVZ" userLabel="Search" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Ox2-l6-PM1"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XTk-zz-8Rb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="8376" y="456"/>
         </scene>
         <!--FavoriteMovies-->
         <scene sceneID="EhB-Oq-gng">
@@ -279,7 +225,6 @@
     </scenes>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
