@@ -20,7 +20,6 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     weak var delegate: CategoriesCellDelegate?
     var indexPath: IndexPath?    
 
-    // bu ne abi gerçekten xib dosyası nerde bunun? bunun yok
     override func awakeFromNib() {
         super.awakeFromNib()
         /*let tapGesture = UITapGestureRecognizer(target: self, action: #selector(labelClicked))

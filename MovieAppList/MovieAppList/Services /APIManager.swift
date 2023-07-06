@@ -15,6 +15,8 @@ class APIManager {
     
     private var favoriteMoviesArray: [Movie] = []
     private var categoryMoviesArray: [Genre] = []
+    private var searchedMoviesArray: [Movie] = []
+
     var query = String()
 
     var baseURL = "https://api.themoviedb.org/"
@@ -57,6 +59,9 @@ class APIManager {
 
     func getCategoryMovies() -> [Genre] {
         return categoryMoviesArray
+    }
+    func getSearchedMovies(title: String) -> [Movie] {
+            return searchedMoviesArray
     }
   
     func execute<T: Decodable>(url: String, completion: @escaping(T?) -> ()) {

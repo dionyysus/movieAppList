@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GzX-6J-szO">
-                                <rect key="frame" x="0.0" y="201" width="393" height="43"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GzX-6J-szO">
+                                <rect key="frame" x="0.0" y="205" width="393" height="43"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="196" translatesAutoresizingMaskIntoConstraints="NO" id="Bfu-ow-3WT">
                                         <rect key="frame" x="10" y="5" width="373" height="33"/>
@@ -42,8 +42,8 @@
                                     <constraint firstAttribute="height" constant="43" id="ty2-2g-Dtc"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bk3-vS-QGF">
-                                <rect key="frame" x="0.0" y="244" width="393" height="52"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bk3-vS-QGF">
+                                <rect key="frame" x="0.0" y="248" width="393" height="52"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="vJo-ao-zBf"/>
@@ -99,8 +99,8 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mNw-3y-QkU">
-                                <rect key="frame" x="0.0" y="296" width="393" height="43"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mNw-3y-QkU">
+                                <rect key="frame" x="0.0" y="300" width="393" height="43"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="226" translatesAutoresizingMaskIntoConstraints="NO" id="CS0-j4-bfD">
                                         <rect key="frame" x="10" y="5" width="373" height="33"/>
@@ -123,8 +123,8 @@
                                     <constraint firstItem="CS0-j4-bfD" firstAttribute="leading" secondItem="mNw-3y-QkU" secondAttribute="leading" constant="10" id="hc2-iZ-iko"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="N6h-v3-jd1" userLabel="Movies Collection View">
-                                <rect key="frame" x="0.0" y="339" width="393" height="430"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="N6h-v3-jd1" userLabel="Movies Collection View">
+                                <rect key="frame" x="0.0" y="343" width="393" height="426"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iKr-gU-YiT">
                                     <size key="itemSize" width="388" height="242"/>
@@ -144,28 +144,45 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a70-r4-IY7">
-                                <rect key="frame" x="0.0" y="103" width="393" height="98"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a70-r4-IY7">
+                                <rect key="frame" x="0.0" y="103" width="389" height="102"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search movie" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8gg-XQ-cpq">
-                                        <rect key="frame" x="8" y="32" width="377" height="34"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="377" id="eHf-nz-3jR"/>
-                                            <constraint firstAttribute="height" constant="34" id="nWX-c4-wnC"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <connections>
-                                            <action selector="searchHandler:" destination="Y6W-OH-hqX" eventType="editingChanged" id="ffE-qt-Wxm"/>
-                                        </connections>
-                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ksl-uP-rde">
+                                        <rect key="frame" x="8" y="32" width="373" height="34"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search movie" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8gg-XQ-cpq">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="34" id="Mex-LT-vBA"/>
+                                                    <constraint firstAttribute="width" constant="335" id="fDf-hA-OxH"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="searchHandler:" destination="Y6W-OH-hqX" eventType="editingChanged" id="ffE-qt-Wxm"/>
+                                                </connections>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heo-gw-zzZ">
+                                                <rect key="frame" x="343" y="0.0" width="30" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="0SG-1V-GwV"/>
+                                                    <constraint firstAttribute="height" constant="30" id="duu-0x-2o0"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
+                                                <connections>
+                                                    <action selector="searchTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="BLE-cp-0tK"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="8gg-XQ-cpq" secondAttribute="bottom" constant="32" id="Gf3-4M-qeo"/>
-                                    <constraint firstItem="8gg-XQ-cpq" firstAttribute="leading" secondItem="a70-r4-IY7" secondAttribute="leading" constant="8" id="RNB-WK-NB7"/>
-                                    <constraint firstAttribute="trailing" secondItem="8gg-XQ-cpq" secondAttribute="trailing" constant="8" id="Wvv-eT-hgF"/>
-                                    <constraint firstItem="8gg-XQ-cpq" firstAttribute="top" secondItem="a70-r4-IY7" secondAttribute="top" constant="32" id="o3R-uR-cYC"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ksl-uP-rde" secondAttribute="bottom" constant="36" id="Og4-cn-rjv"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ksl-uP-rde" secondAttribute="trailing" constant="8" id="QZk-Zo-L01"/>
+                                    <constraint firstItem="Ksl-uP-rde" firstAttribute="leading" secondItem="a70-r4-IY7" secondAttribute="leading" constant="8" id="aOU-kM-XqF"/>
+                                    <constraint firstItem="Ksl-uP-rde" firstAttribute="top" secondItem="a70-r4-IY7" secondAttribute="top" constant="32" id="m3S-OY-Yjh"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -184,7 +201,6 @@
                             <constraint firstItem="bk3-vS-QGF" firstAttribute="top" secondItem="GzX-6J-szO" secondAttribute="bottom" id="Utx-nP-2n0"/>
                             <constraint firstItem="mNw-3y-QkU" firstAttribute="top" secondItem="bk3-vS-QGF" secondAttribute="bottom" id="Y3o-8Z-pWw"/>
                             <constraint firstItem="bk3-vS-QGF" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="bEa-C0-PgK"/>
-                            <constraint firstAttribute="trailing" secondItem="a70-r4-IY7" secondAttribute="trailing" id="cEo-hw-R2N"/>
                             <constraint firstItem="mNw-3y-QkU" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="eBj-6a-3Ce"/>
                             <constraint firstItem="GzX-6J-szO" firstAttribute="top" secondItem="a70-r4-IY7" secondAttribute="bottom" id="fDC-KX-PHb"/>
                             <constraint firstItem="mNw-3y-QkU" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="uEI-oN-o2p"/>
@@ -252,6 +268,7 @@
     </scenes>
     <resources>
         <image name="house" catalog="system" width="128" height="104"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

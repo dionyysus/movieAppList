@@ -56,23 +56,37 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
                     self.searchedFilm = searchText
                     return title.contains(searchText.lowercased())
                 }
+                
                 return false
             }
+            guard let searched = searchedFilm.addingPercentEncoding(withAllowedCharacters: .alphanumerics) else { return }
+                viewModel?.fetchMovie(named: searched) { [weak self] in
+                  self?.moviesCollectionView.reloadData()
+            }
+            //selectedCategory = true
+
             searching = true
         }
         if sender.text!.isEmpty {
             searching = false
         }
         moviesCollectionView.reloadData()
+        
+        
     }
+//    @IBAction func searchTapped(_ sender: Any) {
+//        searching = false
+//        isFiltered = false
+//        guard let searched = searchedFilm.addingPercentEncoding(withAllowedCharacters: .alphanumerics) else { return }
+//            viewModel?.fetchMovie(named: searched) { [weak self] in
+//              self?.moviesCollectionView.reloadData()
+//        }
+//        selectedCategory = true
+//        self.moviesCollectionView.reloadData()
+//        }
     
-  @IBAction func searchTapped(_ sender: Any) {
-      searching = false
-      isFiltered = false
-      selectedCategory = true
-      self.moviesCollectionView.reloadData()
-      }
     }
+
 
 extension HomeViewController: UICollectionViewDataSource{
     
@@ -116,7 +130,7 @@ extension HomeViewController: UICollectionViewDataSource{
                     }
                     
                 }
-               
+               2
             }
         }
 
