@@ -12,16 +12,19 @@ class SearchViewController: UIViewController, UICollectionViewDelegate{
 
     @IBOutlet weak var searchCollectionView: UICollectionView!
     
+    @IBOutlet weak var movieCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = UINib(nibName: SearchCollectionViewCell.identifier, bundle: nil)
-        searchCollectionView.register(nib, forCellWithReuseIdentifier: SearchCollectionViewCell.identifier)
+        let nibSearch = UINib(nibName: SearchCollectionViewCell.identifier, bundle: nil)
+        searchCollectionView.register(nibSearch, forCellWithReuseIdentifier: SearchCollectionViewCell.identifier)
 
+        let nibMovie = UINib(nibName: MoviesCollectionViewCell.identifier, bundle: nil)
+        movieCollectionView.register(nibMovie, forCellWithReuseIdentifier: MoviesCollectionViewCell.identifier)
+        
         searchCollectionView.dataSource = self
         searchCollectionView.delegate = self
-        
-        
+
     }
     
 }

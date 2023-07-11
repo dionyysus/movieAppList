@@ -20,5 +20,6 @@ class SearchCollectionViewCell: UICollectionViewCell {
 
     @IBAction func searchButton(_ sender: Any) {
         print("button tapped")
+        
     }
 }

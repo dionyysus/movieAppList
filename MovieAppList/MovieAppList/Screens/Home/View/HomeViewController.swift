@@ -371,8 +371,7 @@ extension HomeViewController: UICollectionViewDataSource {
                       cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
     if collectionView == moviesCollectionView {
-      guard let cell = moviesCollectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell",
-                                                                for: indexPath) as? MoviesCollectionViewCell
+      guard let cell = moviesCollectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell
       else {
         return UICollectionViewCell()
       }
