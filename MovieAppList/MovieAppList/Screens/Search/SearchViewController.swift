@@ -13,6 +13,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate{
     @IBOutlet weak var searchCollectionView: UICollectionView!
     
     @IBOutlet weak var movieCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,8 +37,16 @@ extension SearchViewController: UICollectionViewDataSource{
     
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = searchCollectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell() }
-        return cell
+        
+        if collectionView == searchCollectionView{
+            guard let cellSearch = searchCollectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell() }
+            return cellSearch
+        }else if collectionView == movieCollectionView{<
+            guard let cellMovie = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell else { return UICollectionViewCell() }
+            return cellMovie
+        }
+        return UICollectionViewCell()
         
     }
 }
+
