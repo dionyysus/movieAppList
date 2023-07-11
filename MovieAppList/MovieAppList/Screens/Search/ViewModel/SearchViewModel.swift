@@ -8,19 +8,18 @@
 import Foundation
 
 class SearchViewModel{
-    
 
     var movies: [Movie]?
     private var apiManager: APIManager?
     var firstGenre: Genre?
 
     init(apiManager: APIManager) {
-           self.apiManager = apiManager
-       }
+        self.apiManager = apiManager
+    }
  
     func fetchMovie(named name: String, completion: @escaping () -> Void) {
         apiManager = APIManager.shared
-      guard let apiManager = apiManager else { return }
+        guard let apiManager = apiManager else { return }
         apiManager.query = name
         apiManager.execute(url: apiManager.searchApiURL) { (data: MovieResponse?) in
             self.movies = data?.results ?? []

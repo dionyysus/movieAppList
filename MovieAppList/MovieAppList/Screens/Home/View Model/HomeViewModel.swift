@@ -17,8 +17,8 @@ class HomeViewModel {
     private var apiManager: APIManager?
     
     init(apiManager: APIManager) {
-           self.apiManager = apiManager
-       }
+        self.apiManager = apiManager
+    }
     
     func fetchMovies(completion: @escaping () -> Void) {
         APIManager.shared.execute(url: APIManager.shared.apiURL) { (data: MovieResponse?) in
