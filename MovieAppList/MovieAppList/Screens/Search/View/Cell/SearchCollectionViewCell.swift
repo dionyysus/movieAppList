@@ -11,6 +11,7 @@ class SearchCollectionViewCell: UICollectionViewCell {
 
     static let identifier = "SearchCollectionViewCell"
     
+
     @IBOutlet weak var searchTextField: UITextField!
     
     override func awakeFromNib() {
@@ -18,8 +19,9 @@ class SearchCollectionViewCell: UICollectionViewCell {
         
     }
 
+
     @IBAction func searchButton(_ sender: Any) {
-        print("button tapped")
-        
     }
+    
 }
+
