@@ -11,8 +11,9 @@ class SearchViewController: UIViewController, UICollectionViewDelegate{
 
 
     @IBOutlet weak var searchCollectionView: UICollectionView!
-    
     @IBOutlet weak var movieCollectionView: UICollectionView!
+    
+    private var viewModel: FavoriteViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,23 @@ class SearchViewController: UIViewController, UICollectionViewDelegate{
 }
 
 extension SearchViewController: UICollectionViewDataSource{
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView == movieCollectionView {
+            
+            let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
+            let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            let movieEntity = RealmManager.shared.getAllMovies()[indexPath.row]
+            let movie = Movie.mapToItem(model: movieEntity)
+            gotoDetailController.movieId = indexPath.row
+            gotoDetailController.prepare(movie: movie, genreName: movie.genreName ?? "")
+            print(viewModel?.firstGenre ?? 0)
+            navigationController?.pushViewController(gotoDetailController, animated: true)
+            return
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -41,7 +59,7 @@ extension SearchViewController: UICollectionViewDataSource{
         if collectionView == searchCollectionView{
             guard let cellSearch = searchCollectionView.dequeueReusableCell(withReuseIdentifier: "SearchCollectionViewCell", for: indexPath) as? SearchCollectionViewCell else { return UICollectionViewCell() }
             return cellSearch
-        }else if collectionView == movieCollectionView{<
+        }else if collectionView == movieCollectionView{
             guard let cellMovie = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell else { return UICollectionViewCell() }
             return cellMovie
         }
