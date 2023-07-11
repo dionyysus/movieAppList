@@ -82,29 +82,24 @@ extension SearchViewController: UICollectionViewDataSource{
 extension SearchViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
-        let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        let movieEntity = RealmManager.shared.getAllMovies()[indexPath.row]
-        let movie = Movie.mapToItem(model: movieEntity)
-        gotoDetailController.movieId = indexPath.row
-        gotoDetailController.prepare(movie: movie, genreName: movie.genreName ?? "")
-        print(viewModel?.firstGenre ?? 0)
-        navigationController?.pushViewController(gotoDetailController, animated: true)
-        return
+
         
-//        let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
-//        let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-//        let movie = viewModel?.apiManager?.searchedMoviesArray[indexPath.row]  //save index-collections
-//        let movieGenres = viewModel?.categoryMovies?[indexPath.row].genreIDS
-//        let genreName = viewModel?.genres?.filter { genre in
-//          movieGenres!.contains(genre.id ?? 0) // ! ekledim movieGenres yanına (realm için)
-//        }.map { $0.name ?? "" }.joined(separator: ",") ?? ""
-//        gotoDetailController.movieId = indexPath.row
-//        if let movie {
-//          gotoDetailController.prepare(movie: movie, genreName: genreName)
-//          navigationController?.pushViewController(gotoDetailController, animated: true)
-//        }
-//        return
+        let storyBoard = UIStoryboard(name: "Detail",
+                                      bundle: nil)
+        let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        
+        let movie = viewModel?.movies?[indexPath.row]  //save index-collections
+        
+        let movieGenres = viewModel?.movies?[indexPath.row].genreIDS
+        let genreName = viewModel?.genres?.filter { genre in
+          movieGenres!.contains(genre.id ?? 0) // ! ekledim movieGenres yanına (realm için)
+        }.map { $0.name ?? "" }.joined(separator: ",") ?? ""
+        gotoDetailController.movieId = indexPath.row
+        if let movie {
+          gotoDetailController.prepare(movie: movie, genreName: genreName)
+          navigationController?.pushViewController(gotoDetailController, animated: true)
+        }
+        return
     }
     
     
