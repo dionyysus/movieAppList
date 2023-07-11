@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UICollectionViewDelegate{
+class SearchViewController: UIViewController{
 
 
     @IBOutlet weak var searchCollectionView: UICollectionView!
@@ -33,22 +33,6 @@ class SearchViewController: UIViewController, UICollectionViewDelegate{
 
 extension SearchViewController: UICollectionViewDataSource{
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if collectionView == movieCollectionView {
-            
-            let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
-            let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-            let movieEntity = RealmManager.shared.getAllMovies()[indexPath.row]
-            let movie = Movie.mapToItem(model: movieEntity)
-            gotoDetailController.movieId = indexPath.row
-            gotoDetailController.prepare(movie: movie, genreName: movie.genreName ?? "")
-            print(viewModel?.firstGenre ?? 0)
-            navigationController?.pushViewController(gotoDetailController, animated: true)
-            return
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -68,3 +52,21 @@ extension SearchViewController: UICollectionViewDataSource{
     }
 }
 
+extension SearchViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView == movieCollectionView {
+            
+            let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
+            let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+            let movieEntity = RealmManager.shared.getAllMovies()[indexPath.row]
+            let movie = Movie.mapToItem(model: movieEntity)
+            gotoDetailController.movieId = indexPath.row
+            gotoDetailController.prepare(movie: movie, genreName: movie.genreName ?? "")
+            print(viewModel?.firstGenre ?? 0)
+            navigationController?.pushViewController(gotoDetailController, animated: true)
+            return
+        }
+    }
+}
