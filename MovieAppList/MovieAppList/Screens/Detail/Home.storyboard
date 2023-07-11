@@ -67,12 +67,13 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cxw-dd-bT0">
                                                             <rect key="frame" x="20" y="3" width="48" height="23"/>
+                                                            <color key="tintColor" red="0.90975296497344971" green="0.40478822588920593" blue="0.82923084497451782" alpha="0.72294081125827814" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.68440261994949503" green="0.41530772698032031" blue="0.63482332997623026" alpha="0.79648696192052981" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" red="0.54509806630000002" green="0.32941177490000001" blue="0.50588238240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <color key="tintColor" red="0.76154461470000001" green="0.4621188665" blue="0.70637702739999997" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstItem="Cxw-dd-bT0" firstAttribute="top" secondItem="q6J-o4-EKY" secondAttribute="top" constant="3" id="Hmd-Bi-6K4"/>
@@ -187,11 +188,22 @@
                     <connections>
                         <segue destination="iMB-hY-FLA" kind="relationship" relationship="viewControllers" id="fC4-5N-io0"/>
                         <segue destination="ZyQ-gk-6Z0" kind="relationship" relationship="viewControllers" id="zH8-xz-O6j"/>
+                        <segue destination="OJA-ht-igc" kind="relationship" relationship="viewControllers" id="Jav-Oq-3ts"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T5u-hZ-roB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="8635.8778625954201" y="-39.436619718309863"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="7au-Oy-DRT">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Search" id="OJA-ht-igc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="bgb-yp-Wiq"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f1q-EO-9Zt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8392" y="456"/>
         </scene>
         <!--FavoriteMovies-->
         <scene sceneID="EhB-Oq-gng">
