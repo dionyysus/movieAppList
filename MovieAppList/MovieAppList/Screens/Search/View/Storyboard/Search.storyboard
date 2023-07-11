@@ -37,7 +37,7 @@
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
                                                         <connections>
-                                                            <action selector="searchButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="5Sg-qx-NP7"/>
+                                                            <action selector="searchButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="1Hw-Ew-J9l"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

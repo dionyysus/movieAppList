@@ -12,9 +12,10 @@ class SearchViewController: UIViewController{
     @IBOutlet weak var movieCollectionView: UICollectionView!
     
     private var viewModel: SearchViewModel?
-    
+    var searchedFilm = String()
     @IBOutlet weak var searchTextField: UITextField!
-    
+    var searching = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,7 +28,12 @@ class SearchViewController: UIViewController{
         movieCollectionView.delegate = self
     }
     
-    @IBAction func searchButton(_ sender: Any) {
+    @IBAction func searchButton(_ sender: UIButton) {
+
+        guard let searched = searchTextField.text else {return}
+        viewModel?.fetchMovie(named: searched) { [weak self] in
+        self?.movieCollectionView.reloadData()
+        }
     }
 }
 
@@ -40,7 +46,6 @@ extension SearchViewController: UICollectionViewDataSource{
       
         guard let cellMovie = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell else { return UICollectionViewCell() }
         return cellMovie
-        
     }
 }
 
@@ -56,5 +61,21 @@ extension SearchViewController: UICollectionViewDelegate {
         print(viewModel?.firstGenre ?? 0)
         navigationController?.pushViewController(gotoDetailController, animated: true)
         return
+        
+//        let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
+//        let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+//        let movie = viewModel?.apiManager?.searchedMoviesArray[indexPath.row]  //save index-collections
+//        let movieGenres = viewModel?.categoryMovies?[indexPath.row].genreIDS
+//        let genreName = viewModel?.genres?.filter { genre in
+//          movieGenres!.contains(genre.id ?? 0) // ! ekledim movieGenres yanına (realm için)
+//        }.map { $0.name ?? "" }.joined(separator: ",") ?? ""
+//        gotoDetailController.movieId = indexPath.row
+//        if let movie {
+//          gotoDetailController.prepare(movie: movie, genreName: genreName)
+//          navigationController?.pushViewController(gotoDetailController, animated: true)
+//        }
+//        return
     }
+    
+    
 }
