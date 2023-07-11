@@ -12,6 +12,7 @@ class SearchViewModel{
 
     var movies: [Movie]?
     private var apiManager: APIManager?
+    var firstGenre: Genre?
 
     init(apiManager: APIManager) {
            self.apiManager = apiManager
