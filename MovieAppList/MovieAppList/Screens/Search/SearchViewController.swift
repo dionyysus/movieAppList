@@ -44,8 +44,38 @@ extension SearchViewController: UICollectionViewDataSource{
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
       
-        guard let cellMovie = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell else { return UICollectionViewCell() }
-        return cellMovie
+//        guard let cellMovie = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell else { return UICollectionViewCell() }
+//        return cellMovie
+        
+        guard let cell = movieCollectionView.dequeueReusableCell(withReuseIdentifier: "MoviesCollectionViewCell", for: indexPath) as? MoviesCollectionViewCell
+        else {
+          return UICollectionViewCell()
+        }
+        
+  //    traditional
+        let funkNasty: [Movie]? = {
+            viewModel?.movies
+        }()
+        
+  //    Variation using ternary operator
+        let test = viewModel?.movies
+
+        cell.movieNameLabel.text = funkNasty?[indexPath.row].title
+        cell.movieVoteLabel.text = String(funkNasty?[indexPath.row].voteAverage ?? 0.0)
+        
+        let imgPosterPath = funkNasty?[indexPath.row].posterPath ?? ""
+        let imgFullPath = URL(string: "\(APIManager.shared.imgUrl + imgPosterPath)")
+        
+        cell.movieImageView.loadImg(url: imgFullPath!)
+        
+        let movieGenres = funkNasty?[indexPath.row].genreIDS
+        let genreName = viewModel?.genres?.filter { genre in
+          movieGenres!.contains(genre.id ?? 0) // ! ekledim movieGenres yanına (realm için)
+        }.map { $0.name ?? "" }.joined(separator: ",")
+        
+        cell.movieCategoryNameLabel.text = genreName
+        funkNasty?[indexPath.row].genreIDS.forEach{print("Genre ID: \($0)")}
+        return cell
     }
 }
 
