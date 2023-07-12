@@ -43,6 +43,9 @@ class FavoriteMoviesViewController: UIViewController {
         favoriteMoviesCollectionView.delegate = self
         favoriteMoviesCollectionView.dataSource = self
         addFavoriteLabel()
+        viewModel?.fetchGenres { [weak self] in
+          self?.favoriteMoviesCollectionView.reloadData()
+        }
     }
 
     private func addFavoriteLabel() {
@@ -106,7 +109,6 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
 
 extension FavoriteMoviesViewController: FavoritesCellDelegate{
     func imageViewClicked(indexPath: IndexPath) {
-        
         let movies = RealmManager.shared.getAllMovies()
         let movie = movies[indexPath.row]
         RealmManager.shared.deleteMovie(movie)

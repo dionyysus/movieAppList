@@ -34,10 +34,26 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
       self?.moviesCollectionView.reloadData()
       self?.categoryCollectionView.reloadData()
     }
+      
+      let layout = UICollectionViewFlowLayout()
+      layout.scrollDirection = .vertical
+      layout.minimumLineSpacing = 5
+      layout.minimumInteritemSpacing = 5
+      moviesCollectionView.setCollectionViewLayout(layout, animated: true)
   }
 }
 
+extension HomeViewController: UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0)
+    }
 
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let gridLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let widthPerItem = collectionView.frame.width / 1 - gridLayout.minimumInteritemSpacing
+        return CGSize(width:widthPerItem, height:240)
+    }
+}
 extension HomeViewController: UICollectionViewDataSource {
 //  MARK: MOVIE COLLECTION DATA SOURCE CELL COUNT
   func collectionView(_ collectionView: UICollectionView,

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,9 +28,9 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vhs-AX-FIv">
-                        <rect key="frame" x="8" y="164.66666666666666" width="368" height="61.333333333333343"/>
+                        <rect key="frame" x="8" y="164.33333333333334" width="368" height="61.666666666666657"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="v90-Hd-SMd">
-                            <rect key="frame" x="0.0" y="0.0" width="368" height="61"/>
+                            <rect key="frame" x="0.0" y="0.0" width="368" height="62"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5AC-6C-I26">
@@ -42,7 +43,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="W3N-Et-43I">
-                                            <rect key="frame" x="0.0" y="25.333333333333343" width="236" height="20.333333333333329"/>
+                                            <rect key="frame" x="0.0" y="25.333333333333314" width="237.33333333333334" height="20.333333333333329"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="40R-of-GUR">
                                                     <rect key="frame" x="0.0" y="0.0" width="96.666666666666671" height="20.333333333333332"/>
@@ -59,13 +60,13 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="uH4-yB-Vdy">
-                                                    <rect key="frame" x="125.66666666666666" y="0.0" width="110.33333333333334" height="20.333333333333332"/>
+                                                    <rect key="frame" x="125.66666666666666" y="0.0" width="111.66666666666666" height="20.333333333333332"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="figure.fall" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1sq-7X-mSB">
-                                                            <rect key="frame" x="0.0" y="0.99999999999999822" width="20.666666666666668" height="18.666666666666664"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1sq-7X-mSB">
+                                                            <rect key="frame" x="0.0" y="-0.33333333333333215" width="22" height="19.999999999999996"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7.7 (IMDb)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zw-Cf-L8c">
-                                                            <rect key="frame" x="32.666666666666693" y="0.0" width="77.666666666666686" height="20.333333333333332"/>
+                                                            <rect key="frame" x="34.000000000000007" y="0.0" width="77.666666666666686" height="20.333333333333332"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -124,5 +125,6 @@
         <image name="figure.fall" catalog="system" width="128" height="115"/>
         <image name="heart-filled" width="48" height="48"/>
         <image name="movie" width="1536" height="864"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
     </resources>
 </document>
