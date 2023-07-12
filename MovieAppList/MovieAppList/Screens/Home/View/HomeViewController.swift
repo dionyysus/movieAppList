@@ -119,11 +119,11 @@ extension HomeViewController: UICollectionViewDataSource {
       }
       categoryCell.categoryNameLabel.text = viewModel?.genres?[indexPath.row].name
       
-      if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first, selectedIndexPath == indexPath {
-        categoryCell.backgroundColor = .lightGray
-      } else {
-        categoryCell.backgroundColor = .white
-      }
+//      if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first, selectedIndexPath == indexPath {
+//        categoryCell.backgroundColor = .lightGray
+//      } else {
+//        categoryCell.backgroundColor = .white
+//      }
       return categoryCell
     }
     return UICollectionViewCell()
@@ -157,12 +157,15 @@ extension HomeViewController: UICollectionViewDelegate {
     } else if collectionView == categoryCollectionView {
       if let cell = categoryCollectionView.cellForItem(at: indexPath) as? CategoriesCollectionViewCell {
         if !isSelectedCell {
-            cell.backgroundColor = .magenta
+            cell.layer.borderColor =  UIColor.darkGray.cgColor
+            cell.layer.borderWidth = 3.0
           cellClicked(indexPath: indexPath)
           isSelectedCell = true
         } else {
           if !deSelectCell {
             cell.backgroundColor = .white
+              cell.layer.borderColor =  UIColor.white.cgColor
+              
             isSelectedCell = false
             viewModel?.fetchMovies { [weak self] in
               self?.moviesCollectionView.reloadData()

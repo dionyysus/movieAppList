@@ -10,7 +10,7 @@ import UIKit
 class SearchViewController: UIViewController{
     
     @IBOutlet weak var movieCollectionView: UICollectionView!
-    
+
     private var viewModel: SearchViewModel?
     var searchedFilm = String()
     @IBOutlet weak var searchTextField: UITextField!
