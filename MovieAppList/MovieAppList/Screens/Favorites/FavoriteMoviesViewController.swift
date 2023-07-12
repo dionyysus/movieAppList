@@ -89,7 +89,6 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let favorites = RealmManager.shared.getAllMovies()[indexPath.row]
-        //let categories = APIManager.shared.getCategoryMovies()[indexPath.row]
         guard let cell = favoriteMoviesCollectionView.dequeueReusableCell(withReuseIdentifier: "FavoritesCollectionViewCell", for: indexPath) as? FavoritesCollectionViewCell else{
             return UICollectionViewCell()
         }

@@ -83,7 +83,6 @@ extension HomeViewController: UICollectionViewDataSource {
         return UICollectionViewCell()
       }
       
-//    traditional
       let funkNasty: [Movie]? = {
         if selectedCategory {
           return viewModel?.categoryMovies
@@ -92,7 +91,6 @@ extension HomeViewController: UICollectionViewDataSource {
         }
       }()
       
-//    Variation using ternary operator
       let test = selectedCategory ? viewModel?.categoryMovies : viewModel?.movies
 
       cell.movieNameLabel.text = funkNasty?[indexPath.row].title
@@ -118,12 +116,6 @@ extension HomeViewController: UICollectionViewDataSource {
         return UICollectionViewCell()
       }
       categoryCell.categoryNameLabel.text = viewModel?.genres?[indexPath.row].name
-      
-//      if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first, selectedIndexPath == indexPath {
-//        categoryCell.backgroundColor = .lightGray
-//      } else {
-//        categoryCell.backgroundColor = .white
-//      }
       return categoryCell
     }
     return UICollectionViewCell()
@@ -163,7 +155,6 @@ extension HomeViewController: UICollectionViewDelegate {
           isSelectedCell = true
         } else {
           if !deSelectCell {
-            cell.backgroundColor = .white
               cell.layer.borderColor =  UIColor.white.cgColor
               
             isSelectedCell = false
@@ -178,8 +169,7 @@ extension HomeViewController: UICollectionViewDelegate {
   }
   
 // MARK: - CATEGORY COLLECTION DELEGATE (part 2)
-  func collectionView(_ collectionView: UICollectionView,
-                      didDeselectItemAt indexPath: IndexPath) {
+  func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
     if collectionView == categoryCollectionView {
       if let cell = categoryCollectionView.cellForItem(at: indexPath) as? CategoriesCollectionViewCell {
         cell.backgroundColor = .white
@@ -194,7 +184,6 @@ extension HomeViewController {
   func cellClicked(indexPath: IndexPath) {
     selectedCategory = true
     viewModel?.categoryMovies = viewModel?.movies?.filter { $0.genreIDS.contains(viewModel?.genres?[indexPath.row].id ?? 0) }
-    //print(viewModel?.categoryMovies?[0].originalTitle ?? "nope")
     moviesCollectionView.reloadData()
   }
 }
