@@ -74,12 +74,12 @@ class Movie: Codable {
     
     static func mapToItem(model: MovieEntity) -> Movie {
         return Movie(id: model.id, adult: model.adult ?? false,
-                           backdropPath: model.backdropPath ?? "", genreIDS: model.genreIDS,
-                           originalTitle: model.originalTitle, overview: model.overview ?? "",
-                           popularity: model.popularity, posterPath: model.posterPath ?? "",
-                           releaseDate: model.releaseDate ?? "", title: model.title ?? "",
-                           video: model.video ?? false, voteAverage: model.voteAverage ?? 0.0,
-                           voteCount: model.voteCount ?? 0, genreName: model.genreName)
+                     backdropPath: model.backdropPath ?? "", genreIDS: model.genreIDS,
+                     originalTitle: model.originalTitle, overview: model.overview ?? "",
+                     popularity: model.popularity, posterPath: model.posterPath ?? "",
+                     releaseDate: model.releaseDate ?? "", title: model.title ?? "",
+                     video: model.video ?? false, voteAverage: model.voteAverage ?? 0.0,
+                     voteCount: model.voteCount ?? 0, genreName: model.genreName)
     }
 }
 enum OriginalLanguage: String, Codable {

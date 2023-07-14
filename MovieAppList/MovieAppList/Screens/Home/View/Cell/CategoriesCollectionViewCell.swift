@@ -16,12 +16,12 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     static let identifier = "CategoriesCollectionViewCell"
     
     @IBOutlet weak var categoryNameLabel: UILabel!
-   
+    
     weak var delegate: CategoriesCellDelegate?
     var indexPath: IndexPath?    
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
 }

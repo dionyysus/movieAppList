@@ -8,7 +8,7 @@
 import Foundation
 
 class SearchViewModel{
-
+    
     var movies: [Movie]?
     var genres: [Genre]?
     private var apiManager: APIManager?
@@ -18,7 +18,7 @@ class SearchViewModel{
     }
     func fetchGenres(completion: @escaping () -> Void) {
         APIManager.shared.execute(url: APIManager.shared.genreApiURL) { (data: GenreResponse?) in
-                
+            
             self.genres = data?.genres ?? []
             DispatchQueue.main.async {
                 completion()
@@ -32,7 +32,7 @@ class SearchViewModel{
         apiManager.execute(url: apiManager.searchApiURL) { (data: MovieResponse?) in
             self.movies = data?.results ?? []
             DispatchQueue.main.async {
-              completion()
+                completion()
             }
         }
     }

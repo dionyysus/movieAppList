@@ -16,11 +16,11 @@ private extension FavoriteMoviesViewController{
 }
 
 class FavoriteMoviesViewController: UIViewController {
-
+    
     @IBOutlet weak var favoriteMoviesCollectionView: UICollectionView!
     
     private var viewModel: FavoriteViewModel?
-
+    
     lazy var favoriteLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
@@ -30,28 +30,28 @@ class FavoriteMoviesViewController: UIViewController {
         label.backgroundColor = UIColor.lightGray
         return label
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = FavoriteViewModel()
-
+        
         title = "Favorites"
-         
+        
         let nib = UINib(nibName: FavoritesCollectionViewCell.identifier, bundle: nil)
         favoriteMoviesCollectionView.register(nib, forCellWithReuseIdentifier: FavoritesCollectionViewCell.identifier)
-
+        
         favoriteMoviesCollectionView.delegate = self
         favoriteMoviesCollectionView.dataSource = self
         addFavoriteLabel()
         viewModel?.fetchGenres { [weak self] in
-          self?.favoriteMoviesCollectionView.reloadData()
+            self?.favoriteMoviesCollectionView.reloadData()
         }
     }
-
+    
     private func addFavoriteLabel() {
         self.view.addSubview(favoriteLabel)
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         favoriteMoviesCollectionView.reloadData()
         favoriteLabel.isHidden = RealmManager.shared.getAllMovies().count != 0
@@ -61,7 +61,7 @@ class FavoriteMoviesViewController: UIViewController {
         favoriteLabel.layer.cornerRadius = 15.0
         favoriteLabel.layer.borderWidth = 3.0
     }
-
+    
 }
 
 extension FavoriteMoviesViewController: UICollectionViewDataSource{
