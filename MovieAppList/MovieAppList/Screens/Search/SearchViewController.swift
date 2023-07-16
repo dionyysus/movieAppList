@@ -10,11 +10,11 @@ import UIKit
 class SearchViewController: UIViewController{
     
     @IBOutlet weak var movieCollectionView: UICollectionView!
-    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchBar: UISearchBar!
     var searching = false
     private var viewModel: SearchViewModel?
-
     private var moviess = [Movie]()
+    
     lazy var searchLabel: UILabel = {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
         label.font = UIFont.preferredFont(forTextStyle: .footnote)
@@ -50,34 +50,19 @@ class SearchViewController: UIViewController{
         searchLabel.layer.borderWidth = 3.0
     }
     
-    @IBAction func searchButton(_ sender: UIButton) {
-       
-        guard let searched = searchTextField.text else {return}
-        viewModel?.fetchGenres { [weak self] in
-            self?.movieCollectionView.reloadData()
-        }
-        viewModel?.fetchMovie(named: searched) { [weak self] in
-            self?.movieCollectionView.reloadData()
-            self?.checkMovieExists(with: searched)
-        }
-
-    }
-    
     private func checkMovieExists(with searched: String) {
         guard let movies = viewModel?.movies else { return }
-            let searchedLowercased = searched.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-            let movieExists = movies.contains { movie in
-                let title = movie.title?.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-                return ((title?.contains(searchedLowercased)) != nil)
-            }
-            if movieExists {
-                searchLabel.isHidden = true
-                print("Film bulundu!")
-            } else {
-                searchLabel.isHidden = false
-                addSearchLabel()
-                print("Film bulunamadı.")
-            }
+        let searchedLowercased = searched.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        let movieExists = movies.contains { movie in
+            let title = movie.title?.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+            return ((title?.contains(searchedLowercased)) != nil)
+        }
+        if movieExists {
+            searchLabel.isHidden = true
+        } else {
+            searchLabel.isHidden = false
+            addSearchLabel()
+        }
     }
 }
 //  MARK: MOVIE COLLECTION DELEGATE FLOW LAYOUT
@@ -109,7 +94,7 @@ extension SearchViewController: UICollectionViewDataSource{
         let funkNasty: [Movie]? = {
             viewModel?.movies
         }()
-       
+        
         cell.movieNameLabel.text = funkNasty?[indexPath.row].title
         cell.movieVoteLabel.text = String(funkNasty?[indexPath.row].voteAverage ?? 0.0)
         
@@ -148,4 +133,23 @@ extension SearchViewController: UICollectionViewDelegate {
     }
     
     
+}
+extension SearchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let trimmedText = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if trimmedText.isEmpty {
+            viewModel?.movies = []
+            movieCollectionView.reloadData()
+            searchLabel.isHidden = true
+        } else {
+            viewModel?.fetchGenres { [weak self] in
+                self?.movieCollectionView.reloadData()
+            }
+            viewModel?.fetchMovie(named: searchText) { [weak self] in
+                self?.movieCollectionView.reloadData()
+                self?.checkMovieExists(with: searchText)
+            }
+        }
+    }
 }
