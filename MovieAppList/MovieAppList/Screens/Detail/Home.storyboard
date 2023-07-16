@@ -67,13 +67,12 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cxw-dd-bT0">
                                                             <rect key="frame" x="20" y="3" width="48" height="23"/>
-                                                            <color key="tintColor" red="0.90975296497344971" green="0.40478822588920593" blue="0.82923084497451782" alpha="0.72294081125827814" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.54509806630000002" green="0.32941177490000001" blue="0.50588238240000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" red="0.077782221138477325" green="0.61761075258255005" blue="0.79253411293029785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="tintColor" red="0.76154461470000001" green="0.4621188665" blue="0.70637702739999997" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstItem="Cxw-dd-bT0" firstAttribute="top" secondItem="q6J-o4-EKY" secondAttribute="top" constant="3" id="Hmd-Bi-6K4"/>

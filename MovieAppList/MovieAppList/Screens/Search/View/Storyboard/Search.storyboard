@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6oO-wA-p4e">
-                                <rect key="frame" x="0.0" y="215" width="393" height="554"/>
+                                <rect key="frame" x="0.0" y="168" width="393" height="601"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sgj-bv-vYO">
                                     <size key="itemSize" width="361" height="248"/>
@@ -38,40 +38,40 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u9N-vR-e4c">
-                                <rect key="frame" x="0.0" y="103" width="393" height="112"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ItR-bu-d47">
+                                <rect key="frame" x="16" y="103" width="361" height="57"/>
                                 <subviews>
                                     <searchBar contentMode="redraw" placeholder="Search..." translatesAutoresizingMaskIntoConstraints="NO" id="Eyv-qv-TBm">
-                                        <rect key="frame" x="15" y="39" width="363" height="34"/>
+                                        <rect key="frame" x="0.0" y="5" width="361" height="47"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <scopeButtonTitles>
+                                            <string>Title</string>
+                                            <string>Title</string>
+                                        </scopeButtonTitles>
                                         <connections>
                                             <outlet property="delegate" destination="y02-Yk-vuE" id="tqV-fC-1Fn"/>
                                         </connections>
                                     </searchBar>
                                 </subviews>
-                                <color key="backgroundColor" red="0.09135059267282486" green="0.13370424509048462" blue="0.036156143993139267" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Eyv-qv-TBm" firstAttribute="top" secondItem="u9N-vR-e4c" secondAttribute="top" constant="39" id="6Ux-Ja-DO9"/>
-                                    <constraint firstAttribute="trailing" secondItem="Eyv-qv-TBm" secondAttribute="trailing" constant="15" id="Mrb-Va-R94"/>
-                                    <constraint firstAttribute="height" constant="112" id="PMg-Fh-OnS"/>
-                                    <constraint firstAttribute="bottom" secondItem="Eyv-qv-TBm" secondAttribute="bottom" constant="39" id="eFd-jA-1yt"/>
-                                    <constraint firstItem="Eyv-qv-TBm" firstAttribute="leading" secondItem="u9N-vR-e4c" secondAttribute="leading" constant="15" id="g9R-Mc-spi"/>
+                                    <constraint firstItem="Eyv-qv-TBm" firstAttribute="leading" secondItem="ItR-bu-d47" secondAttribute="leading" id="0FI-D9-Htb"/>
+                                    <constraint firstAttribute="height" constant="57" id="G2q-0g-Wwk"/>
+                                    <constraint firstAttribute="trailing" secondItem="Eyv-qv-TBm" secondAttribute="trailing" id="Qbp-71-idW"/>
+                                    <constraint firstItem="Eyv-qv-TBm" firstAttribute="top" secondItem="ItR-bu-d47" secondAttribute="top" constant="5" id="Z8S-tb-RDv"/>
+                                    <constraint firstAttribute="bottom" secondItem="Eyv-qv-TBm" secondAttribute="bottom" constant="5" id="cCT-3s-ge8"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="border.radius" value="16"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Fgb-fN-Uft"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="u9N-vR-e4c" firstAttribute="trailing" secondItem="Fgb-fN-Uft" secondAttribute="trailing" id="RwK-1A-mnk"/>
-                            <constraint firstItem="u9N-vR-e4c" firstAttribute="leading" secondItem="Fgb-fN-Uft" secondAttribute="leading" id="WwT-XC-sgX"/>
-                            <constraint firstItem="6oO-wA-p4e" firstAttribute="bottom" secondItem="Fgb-fN-Uft" secondAttribute="bottom" id="pCc-4k-pZ2"/>
-                            <constraint firstItem="6oO-wA-p4e" firstAttribute="trailing" secondItem="Fgb-fN-Uft" secondAttribute="trailing" id="rVD-ul-vUU"/>
-                            <constraint firstItem="6oO-wA-p4e" firstAttribute="leading" secondItem="Fgb-fN-Uft" secondAttribute="leading" id="uDx-5A-g4b"/>
-                            <constraint firstItem="6oO-wA-p4e" firstAttribute="top" secondItem="u9N-vR-e4c" secondAttribute="bottom" id="wkQ-Ij-KI8"/>
-                            <constraint firstItem="u9N-vR-e4c" firstAttribute="top" secondItem="Fgb-fN-Uft" secondAttribute="top" id="xP6-3K-OSV"/>
+                            <constraint firstItem="6oO-wA-p4e" firstAttribute="bottom" secondItem="Fgb-fN-Uft" secondAttribute="bottom" id="2kg-FP-NEM"/>
+                            <constraint firstItem="ItR-bu-d47" firstAttribute="leading" secondItem="Fgb-fN-Uft" secondAttribute="leading" constant="16" id="4jD-NC-JDK"/>
+                            <constraint firstItem="6oO-wA-p4e" firstAttribute="top" secondItem="ItR-bu-d47" secondAttribute="bottom" constant="8" symbolic="YES" id="8tD-nm-8oz"/>
+                            <constraint firstItem="6oO-wA-p4e" firstAttribute="trailing" secondItem="Fgb-fN-Uft" secondAttribute="trailing" id="DT1-ET-vA2"/>
+                            <constraint firstItem="6oO-wA-p4e" firstAttribute="leading" secondItem="Fgb-fN-Uft" secondAttribute="leading" id="jFJ-6v-BJp"/>
+                            <constraint firstItem="Fgb-fN-Uft" firstAttribute="trailing" secondItem="ItR-bu-d47" secondAttribute="trailing" constant="16" id="krq-R9-NtW"/>
+                            <constraint firstItem="ItR-bu-d47" firstAttribute="top" secondItem="Fgb-fN-Uft" secondAttribute="top" id="xZ3-tw-CPN"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="geM-nE-qUF"/>
