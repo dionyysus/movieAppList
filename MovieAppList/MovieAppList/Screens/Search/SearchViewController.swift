@@ -10,10 +10,19 @@ import UIKit
 class SearchViewController: UIViewController{
     
     @IBOutlet weak var movieCollectionView: UICollectionView!
-    
-    private var viewModel: SearchViewModel?
     @IBOutlet weak var searchTextField: UITextField!
     var searching = false
+    private var viewModel: SearchViewModel?
+
+    private var moviess = [Movie]()
+    lazy var searchLabel: UILabel = {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        label.center = self.view.center
+        label.textAlignment = .center
+        label.text = "The movie was not found!"
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +34,6 @@ class SearchViewController: UIViewController{
         
         movieCollectionView.dataSource = self
         movieCollectionView.delegate = self
-        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 5
@@ -33,14 +41,43 @@ class SearchViewController: UIViewController{
         movieCollectionView.setCollectionViewLayout(layout, animated: true)
     }
     
+    private func addSearchLabel() {
+        self.view.addSubview(searchLabel)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        searchLabel.layer.cornerRadius = 15.0
+        searchLabel.layer.borderWidth = 3.0
+    }
+    
     @IBAction func searchButton(_ sender: UIButton) {
+       
         guard let searched = searchTextField.text else {return}
         viewModel?.fetchGenres { [weak self] in
             self?.movieCollectionView.reloadData()
         }
         viewModel?.fetchMovie(named: searched) { [weak self] in
             self?.movieCollectionView.reloadData()
+            self?.checkMovieExists(with: searched)
         }
+
+    }
+    
+    private func checkMovieExists(with searched: String) {
+        guard let movies = viewModel?.movies else { return }
+            let searchedLowercased = searched.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+            let movieExists = movies.contains { movie in
+                let title = movie.title?.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+                return ((title?.contains(searchedLowercased)) != nil)
+            }
+            if movieExists {
+                searchLabel.isHidden = true
+                print("Film bulundu!")
+            } else {
+                searchLabel.isHidden = false
+                addSearchLabel()
+                print("Film bulunamadı.")
+            }
     }
 }
 //  MARK: MOVIE COLLECTION DELEGATE FLOW LAYOUT
@@ -72,7 +109,7 @@ extension SearchViewController: UICollectionViewDataSource{
         let funkNasty: [Movie]? = {
             viewModel?.movies
         }()
-        
+       
         cell.movieNameLabel.text = funkNasty?[indexPath.row].title
         cell.movieVoteLabel.text = String(funkNasty?[indexPath.row].voteAverage ?? 0.0)
         
@@ -87,9 +124,6 @@ extension SearchViewController: UICollectionViewDataSource{
         }.map { $0.name ?? "" }.joined(separator: ",")
         
         cell.movieCategoryNameLabel.text = genreName
-        if let genreID = funkNasty?[indexPath.row].genreIDS {
-            genreID.forEach { print("Genre ID: \(String(describing: $0))") }
-        }
         return cell
     }
 }

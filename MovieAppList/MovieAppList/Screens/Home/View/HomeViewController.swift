@@ -105,10 +105,11 @@ extension HomeViewController: UICollectionViewDataSource {
             }.map { $0.name ?? "" }.joined(separator: ",")
             
             cell.movieCategoryNameLabel.text = genreName
-            funkNasty?[indexPath.row].genreIDS.forEach{print("Genre ID: \($0)")}
+//            funkNasty?[indexPath.row].genreIDS.forEach{print("Genre ID: \($0)")}
             return cell
             
             //  MARK: - CATEGORY COLLECTION DATA SOURCE CELL CONTENT
+            // fonksiyon oluştur
         } else if collectionView == categoryCollectionView {
             guard let categoryCell = categoryCollectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCollectionViewCell", for: indexPath) as? CategoriesCollectionViewCell else {
                 return UICollectionViewCell()
@@ -116,6 +117,7 @@ extension HomeViewController: UICollectionViewDataSource {
             categoryCell.categoryNameLabel.text = viewModel?.genres?[indexPath.row].name
             return categoryCell
         }
+        
         return UICollectionViewCell()
     }
 }
@@ -155,10 +157,10 @@ extension HomeViewController: UICollectionViewDelegate {
                     if !deSelectCell {
                         cell.layer.borderColor =  UIColor.white.cgColor
                         isSelectedCell = false
-                        viewModel?.fetchMovies { [weak self] in
-                            self?.moviesCollectionView.reloadData()
-                            self?.categoryCollectionView.reloadData()
-                        }
+//                        viewModel?.fetchMovies { [weak self] in
+//                            self?.moviesCollectionView.reloadData()
+//                            self?.categoryCollectionView.reloadData()
+//                        }
                     }
                 }
             }

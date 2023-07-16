@@ -27,7 +27,6 @@ class FavoriteMoviesViewController: UIViewController {
         label.center = self.view.center
         label.textAlignment = .center
         label.text = "There isn't anything here"
-        label.backgroundColor = UIColor.lightGray
         return label
     }()
     
@@ -47,14 +46,13 @@ class FavoriteMoviesViewController: UIViewController {
             self?.favoriteMoviesCollectionView.reloadData()
         }
     }
-    
-    private func addFavoriteLabel() {
-        self.view.addSubview(favoriteLabel)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         favoriteMoviesCollectionView.reloadData()
         favoriteLabel.isHidden = RealmManager.shared.getAllMovies().count != 0
+    }
+    
+    private func addFavoriteLabel() {
+        self.view.addSubview(favoriteLabel)
     }
     
     override func viewDidLayoutSubviews() {
@@ -69,7 +67,6 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == favoriteMoviesCollectionView {
-            
             let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
             let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
             let movieEntity = RealmManager.shared.getAllMovies()[indexPath.row]
@@ -101,7 +98,6 @@ extension FavoriteMoviesViewController: UICollectionViewDataSource{
         cell.favoriteCategoryNameLabel.text = favorites.genreName
         cell.delegate = self
         cell.indexPath = indexPath
-        
         return cell
     }
 }
@@ -111,6 +107,7 @@ extension FavoriteMoviesViewController: FavoritesCellDelegate{
         let movies = RealmManager.shared.getAllMovies()
         let movie = movies[indexPath.row]
         RealmManager.shared.deleteMovie(movie)
+        favoriteLabel.isHidden = RealmManager.shared.getAllMovies().count != 0
         favoriteMoviesCollectionView.reloadData()
     }
 }
