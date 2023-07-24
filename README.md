@@ -1,6 +1,7 @@
 # movieAppList
 
 ## My Movie App ✨🤍🎬🍿
+<img src="https://github.com/dionyysus/SwiftJourney/assets/59100182/a3436b4d-bb05-4320-bcc6-20228c874080" width="200">
 <img src="https://github.com/dionyysus/SwiftJourney/assets/59100182/d59c7db8-d1e9-4347-b112-5f6b73809c7e" width="200">
 <img src="https://github.com/dionyysus/SwiftJourney/assets/59100182/af931e20-1192-4cfa-9f4b-697e25d6c535" width="200">
 <img src="https://github.com/dionyysus/SwiftJourney/assets/59100182/a13ff54e-8a59-4116-aa9c-ee0ab954ab72" width="200">
