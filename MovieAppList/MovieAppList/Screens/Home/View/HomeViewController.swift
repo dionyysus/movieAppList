@@ -74,6 +74,18 @@ extension HomeViewController: UICollectionViewDataSource {
         }
     }
     
+    //  MARK: - FILTER MOVIE
+    func filteredMoviesForIndexPath(_ indexPath: IndexPath) -> Movie? {
+        if selectedCategories.isEmpty {
+            return viewModel?.movies?[indexPath.item]
+        } else {
+            let filteredMovies = viewModel?.movies?.filter { movie in
+                movie.genreIDS.contains { selectedCategories.contains($0 ?? 0) }
+            }
+            return filteredMovies?[indexPath.item]
+        }
+    }
+    
     //  MARK: - MOVIE COLLECTION DATA SOURCE CELL CONTENT
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -82,17 +94,7 @@ extension HomeViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            let filteredMovies: [Movie]? = {
-                if selectedCategories.isEmpty {
-                    return viewModel?.movies
-                } else {
-                    return viewModel?.movies?.filter { movie in
-                        movie.genreIDS.contains(where: { selectedCategories.contains($0 ?? 0) })
-                    }
-                }
-            }()
-            
-            let movie = filteredMovies?[indexPath.item]
+            let movie = filteredMoviesForIndexPath(indexPath)
             
             cell.movieNameLabel.text = movie?.title
             cell.movieVoteLabel.text = String(movie?.voteAverage ?? 0.0)
