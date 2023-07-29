@@ -120,6 +120,7 @@ extension HomeViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             categoryCell.categoryNameLabel.text = viewModel?.genres?[indexPath.row].name
+            
             if selectedCategories.contains(viewModel?.genres?[indexPath.row].id ?? 0) {
                 categoryCell.layer.borderColor =  UIColor.darkGray.cgColor
                 categoryCell.layer.borderWidth = 3.0
@@ -141,17 +142,7 @@ extension HomeViewController: UICollectionViewDelegate {
             let storyBoard = UIStoryboard(name: "Detail", bundle: nil)
             let gotoDetailController = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
             
-            let filteredMovies: [Movie]? = {
-                if selectedCategories.isEmpty {
-                    return viewModel?.movies
-                } else {
-                    return viewModel?.movies?.filter { movie in
-                        movie.genreIDS.contains(where: { selectedCategories.contains($0 ?? 0) })
-                    }
-                }
-            }()
-            
-            let movie = filteredMovies?[indexPath.row]
+            let movie = filteredMoviesForIndexPath(indexPath)
             
             let movieGenres = movie?.genreIDS
             let genreName = viewModel?.genres?
