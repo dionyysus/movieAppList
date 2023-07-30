@@ -60,6 +60,7 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         if collectionView == moviesCollectionView {
+            
             if selectedCategories.isEmpty {
                 return viewModel?.movies?.count ?? 0
             } else {
@@ -103,7 +104,6 @@ extension HomeViewController: UICollectionViewDataSource {
                let imgUrl = URL(string: "\(APIManager.shared.imgUrl + posterPath)") {
                 cell.movieImageView.loadImg(url: imgUrl)
             } else {
-                // Poster yüklenemediğinde varsayılan görsel kullanılabilir
                 cell.movieImageView.image = UIImage(named: "default_poster")
             }
             
