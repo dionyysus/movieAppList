@@ -131,8 +131,6 @@ extension SearchViewController: UICollectionViewDelegate {
         }
         return
     }
-    
-    
 }
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
