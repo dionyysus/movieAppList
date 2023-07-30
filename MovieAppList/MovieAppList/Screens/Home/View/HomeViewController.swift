@@ -129,7 +129,6 @@ extension HomeViewController: UICollectionViewDataSource {
             }
             return categoryCell
         }
-        
         return UICollectionViewCell()
     }
 }
@@ -161,16 +160,12 @@ extension HomeViewController: UICollectionViewDelegate {
         else if collectionView == categoryCollectionView {
             let selectedCategoryId = viewModel?.genres?[indexPath.row].id ?? 0
             if selectedCategories.contains(selectedCategoryId) {
-                
-                // Kategori zaten seçili, seçimini kaldır
                 if let index = selectedCategories.firstIndex(of: selectedCategoryId) {
                     selectedCategories.remove(at: index)
                 }
             } else {
-                // Kategori seçilmedi, seçimini ekle
                 selectedCategories.append(selectedCategoryId)
             }
-            
             categoryCollectionView.reloadData()
             moviesCollectionView.reloadData()
         }

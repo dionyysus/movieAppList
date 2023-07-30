@@ -18,7 +18,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var categoryNameLabel: UILabel!
     
     weak var delegate: CategoriesCellDelegate?
-    var indexPath: IndexPath?    
+    var indexPath: IndexPath?
     
     override func awakeFromNib() {
         super.awakeFromNib()
