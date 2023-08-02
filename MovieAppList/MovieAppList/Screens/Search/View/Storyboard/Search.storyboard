@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6oO-wA-p4e">
-                                <rect key="frame" x="0.0" y="168" width="393" height="601"/>
+                                <rect key="frame" x="8" y="160" width="377" height="609"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sgj-bv-vYO">
                                     <size key="itemSize" width="361" height="248"/>
@@ -29,7 +29,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lcS-ug-oIw">
-                                        <rect key="frame" x="16" y="0.0" width="361" height="248"/>
+                                        <rect key="frame" x="8" y="0.0" width="361" height="248"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LEd-xk-4oC">
                                             <rect key="frame" x="0.0" y="0.0" width="361" height="248"/>
@@ -65,11 +65,11 @@
                         <viewLayoutGuide key="safeArea" id="Fgb-fN-Uft"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6oO-wA-p4e" firstAttribute="bottom" secondItem="Fgb-fN-Uft" secondAttribute="bottom" id="2kg-FP-NEM"/>
+                            <constraint firstItem="6oO-wA-p4e" firstAttribute="top" secondItem="ItR-bu-d47" secondAttribute="bottom" id="4YA-vi-fdZ"/>
                             <constraint firstItem="ItR-bu-d47" firstAttribute="leading" secondItem="Fgb-fN-Uft" secondAttribute="leading" constant="16" id="4jD-NC-JDK"/>
-                            <constraint firstItem="6oO-wA-p4e" firstAttribute="top" secondItem="ItR-bu-d47" secondAttribute="bottom" constant="8" symbolic="YES" id="8tD-nm-8oz"/>
-                            <constraint firstItem="6oO-wA-p4e" firstAttribute="trailing" secondItem="Fgb-fN-Uft" secondAttribute="trailing" id="DT1-ET-vA2"/>
-                            <constraint firstItem="6oO-wA-p4e" firstAttribute="leading" secondItem="Fgb-fN-Uft" secondAttribute="leading" id="jFJ-6v-BJp"/>
+                            <constraint firstAttribute="trailing" secondItem="6oO-wA-p4e" secondAttribute="trailing" constant="8" id="RTW-ZB-hvk"/>
+                            <constraint firstItem="6oO-wA-p4e" firstAttribute="bottom" secondItem="Fgb-fN-Uft" secondAttribute="bottom" id="bvB-sk-cEK"/>
+                            <constraint firstItem="6oO-wA-p4e" firstAttribute="leading" secondItem="Fgb-fN-Uft" secondAttribute="leading" constant="8" id="iDR-h5-AM6"/>
                             <constraint firstItem="Fgb-fN-Uft" firstAttribute="trailing" secondItem="ItR-bu-d47" secondAttribute="trailing" constant="16" id="krq-R9-NtW"/>
                             <constraint firstItem="ItR-bu-d47" firstAttribute="top" secondItem="Fgb-fN-Uft" secondAttribute="top" id="xZ3-tw-CPN"/>
                         </constraints>
