@@ -138,6 +138,10 @@ extension HomeViewController: UICollectionViewDataSource {
                 categoryCell.categoryView.backgroundColor = UIColor(red: 153 / 255.0, green: 255 / 255.0, blue: 153 / 255.0, alpha: 1.0)
             } else {
                 categoryCell.categoryView.backgroundColor = UIColor(red: 255 / 255.0, green: 153 / 255.0, blue: 255 / 255.0, alpha: 1.0)
+                categoryCell.categoryView.layer.shadowColor = UIColor.black.cgColor
+                categoryCell.categoryView.layer.shadowOpacity = 1
+                categoryCell.categoryView.layer.shadowOffset = .zero
+                categoryCell.categoryView.layer.shadowRadius = 4
             }
             return categoryCell
         }
