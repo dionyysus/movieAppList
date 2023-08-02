@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,7 +24,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie" translatesAutoresizingMaskIntoConstraints="NO" id="Yly-3y-rqn">
-                                                <rect key="frame" x="0.0" y="0.0" width="393" height="234"/>
+                                                <rect key="frame" x="10" y="0.0" width="373" height="234"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="234" id="sdd-D9-naf"/>
                                                 </constraints>
@@ -110,13 +111,13 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="Yly-3y-rqn" firstAttribute="leading" secondItem="E9m-JO-Bgo" secondAttribute="leading" id="aQx-tX-3UH"/>
+                                            <constraint firstItem="Yly-3y-rqn" firstAttribute="leading" secondItem="UM1-lg-Jsb" secondAttribute="leading" id="aQx-tX-3UH"/>
                                             <constraint firstItem="sxL-Z4-0jC" firstAttribute="top" secondItem="E9m-JO-Bgo" secondAttribute="top" constant="8" id="gyW-R5-H8v"/>
                                             <constraint firstItem="Yly-3y-rqn" firstAttribute="top" secondItem="E9m-JO-Bgo" secondAttribute="top" id="hM8-rc-2eJ"/>
                                             <constraint firstAttribute="trailing" secondItem="UM1-lg-Jsb" secondAttribute="trailing" constant="10" id="iJh-0k-UKJ"/>
                                             <constraint firstAttribute="trailing" secondItem="sxL-Z4-0jC" secondAttribute="trailing" constant="8" id="nGf-pd-sue"/>
                                             <constraint firstItem="UM1-lg-Jsb" firstAttribute="top" secondItem="Yly-3y-rqn" secondAttribute="bottom" constant="10" id="r73-8V-07B"/>
-                                            <constraint firstAttribute="trailing" secondItem="Yly-3y-rqn" secondAttribute="trailing" id="wJp-O5-257"/>
+                                            <constraint firstItem="UM1-lg-Jsb" firstAttribute="trailing" secondItem="Yly-3y-rqn" secondAttribute="trailing" id="wJp-O5-257"/>
                                             <constraint firstItem="UM1-lg-Jsb" firstAttribute="leading" secondItem="E9m-JO-Bgo" secondAttribute="leading" constant="10" id="y20-iw-RUY"/>
                                         </constraints>
                                     </view>
@@ -127,6 +128,7 @@
                                     <constraint firstItem="E9m-JO-Bgo" firstAttribute="leading" secondItem="j70-Zb-FeD" secondAttribute="leading" id="dlL-IS-LGd"/>
                                     <constraint firstItem="E9m-JO-Bgo" firstAttribute="bottom" secondItem="j70-Zb-FeD" secondAttribute="bottom" id="lrg-ev-Vee"/>
                                 </constraints>
+                                <inset key="scrollIndicatorInsets" minX="10" minY="0.0" maxX="10" maxY="10"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>

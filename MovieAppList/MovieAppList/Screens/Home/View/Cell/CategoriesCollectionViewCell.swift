@@ -16,6 +16,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     static let identifier = "CategoriesCollectionViewCell"
     
     @IBOutlet weak var categoryNameLabel: UILabel!
+    @IBOutlet weak var categoryView: UIView!
     
     weak var delegate: CategoriesCellDelegate?
     var indexPath: IndexPath?

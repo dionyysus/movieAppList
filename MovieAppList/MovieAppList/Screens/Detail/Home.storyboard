@@ -26,7 +26,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNk-GO-LBb">
                                                 <rect key="frame" x="0.0" y="0.0" width="373" height="33"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -56,23 +56,23 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoriesCollectionViewCell" id="OPH-O9-RDw" customClass="CategoriesCollectionViewCell" customModule="MovieAppList" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="1.6666666666666667" width="108" height="49"/>
+                                        <rect key="frame" x="10" y="10" width="108" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ebj-10-nNK">
-                                            <rect key="frame" x="0.0" y="0.0" width="108" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="108" height="32"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q6J-o4-EKY">
-                                                    <rect key="frame" x="10" y="10" width="88" height="29"/>
+                                                    <rect key="frame" x="10" y="10" width="88" height="12"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cxw-dd-bT0">
-                                                            <rect key="frame" x="20" y="3" width="48" height="23"/>
+                                                            <rect key="frame" x="20" y="3" width="48" height="6"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.077782221138477325" green="0.61761075258255005" blue="0.79253411293029785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.077782221138477325" green="0.61761075258255005" blue="0.79253411293029785" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="tintColor" red="0.76154461470000001" green="0.4621188665" blue="0.70637702739999997" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstItem="Cxw-dd-bT0" firstAttribute="top" secondItem="q6J-o4-EKY" secondAttribute="top" constant="3" id="Hmd-Bi-6K4"/>
@@ -92,9 +92,10 @@
                                                 <constraint firstAttribute="bottom" secondItem="q6J-o4-EKY" secondAttribute="bottom" constant="10" id="uMu-tR-c9V"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="108" height="49"/>
+                                        <size key="customSize" width="108" height="32"/>
                                         <connections>
                                             <outlet property="categoryNameLabel" destination="Cxw-dd-bT0" id="tIc-ex-Njp"/>
+                                            <outlet property="categoryView" destination="q6J-o4-EKY" id="T3P-9c-PPH"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -107,7 +108,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Movies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5j-w2-SvX">
                                                 <rect key="frame" x="0.0" y="0.0" width="373" height="33"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>

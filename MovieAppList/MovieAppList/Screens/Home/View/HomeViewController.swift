@@ -38,8 +38,8 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 5
-        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
         moviesCollectionView.setCollectionViewLayout(layout, animated: true)
     }
 }
@@ -54,6 +54,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
         let widthPerItem = collectionView.frame.width / 1 - gridLayout.minimumInteritemSpacing
         return CGSize(width:widthPerItem, height:240)
     }
+    
 }
 extension HomeViewController: UICollectionViewDataSource {
     //  MARK: MOVIE COLLECTION DATA SOURCE CELL COUNT
@@ -122,10 +123,12 @@ extension HomeViewController: UICollectionViewDataSource {
             categoryCell.categoryNameLabel.text = viewModel?.genres?[indexPath.row].name
             
             if selectedCategories.contains(viewModel?.genres?[indexPath.row].id ?? 0) {
-                categoryCell.layer.borderColor =  UIColor.darkGray.cgColor
-                categoryCell.layer.borderWidth = 3.0
+               // categoryCell.layer.borderColor =  UIColor.darkGray.cgColor
+                categoryCell.categoryView.backgroundColor = UIColor(red: 153 / 255.0, green: 255 / 255.0, blue: 153 / 255.0, alpha: 1.0)
+                //categoryCell.layer.borderWidth = 3.0
             } else {
-                categoryCell.layer.borderColor =  UIColor.white.cgColor
+                //categoryCell.layer.borderColor =  UIColor.white.cgColor
+                categoryCell.categoryView.backgroundColor = UIColor(red: 255 / 255.0, green: 153 / 255.0, blue: 255 / 255.0, alpha: 1.0)
             }
             return categoryCell
         }
