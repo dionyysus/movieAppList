@@ -123,11 +123,8 @@ extension HomeViewController: UICollectionViewDataSource {
             categoryCell.categoryNameLabel.text = viewModel?.genres?[indexPath.row].name
             
             if selectedCategories.contains(viewModel?.genres?[indexPath.row].id ?? 0) {
-               // categoryCell.layer.borderColor =  UIColor.darkGray.cgColor
                 categoryCell.categoryView.backgroundColor = UIColor(red: 153 / 255.0, green: 255 / 255.0, blue: 153 / 255.0, alpha: 1.0)
-                //categoryCell.layer.borderWidth = 3.0
             } else {
-                //categoryCell.layer.borderColor =  UIColor.white.cgColor
                 categoryCell.categoryView.backgroundColor = UIColor(red: 255 / 255.0, green: 153 / 255.0, blue: 255 / 255.0, alpha: 1.0)
             }
             return categoryCell
