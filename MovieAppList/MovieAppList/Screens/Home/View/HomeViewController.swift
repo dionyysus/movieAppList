@@ -35,7 +35,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             self?.moviesCollectionView.reloadData()
             self?.categoryCollectionView.reloadData()
         }
-        
+
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 10
@@ -45,16 +45,28 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout{
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0)
     }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let gridLayout = collectionViewLayout as! UICollectionViewFlowLayout
         let widthPerItem = collectionView.frame.width / 1 - gridLayout.minimumInteritemSpacing
         return CGSize(width:widthPerItem, height:240)
     }
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+            if collectionView == categoryCollectionView {
+                return 0.0
+            }
+            return 10.0
+        }
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+            if collectionView == categoryCollectionView {
+                return 0.0
+            }
+            return 10.0
+        }
 }
 extension HomeViewController: UICollectionViewDataSource {
     //  MARK: MOVIE COLLECTION DATA SOURCE CELL COUNT
