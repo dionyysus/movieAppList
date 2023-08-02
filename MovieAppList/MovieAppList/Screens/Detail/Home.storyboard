@@ -81,7 +81,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="Cxw-dd-bT0" secondAttribute="bottom" constant="3" id="kVx-VU-Din"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>

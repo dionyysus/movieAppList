@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nSN-PG-bC4">
-                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <rect key="frame" x="8" y="103" width="377" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TcK-8U-f51">
                                     <size key="itemSize" width="393" height="226"/>
@@ -29,7 +29,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="eKy-2s-aCB" customClass="MoviesCollectionViewCell" customModule="MovieAppList" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="226"/>
+                                        <rect key="frame" x="-8" y="0.0" width="393" height="226"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="EhY-10-Mp6">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="226"/>
@@ -43,10 +43,10 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="nSN-PG-bC4" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="FRz-g7-OwW"/>
-                            <constraint firstItem="nSN-PG-bC4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="JTb-70-YWS"/>
-                            <constraint firstItem="nSN-PG-bC4" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Vw8-Gy-d0t"/>
-                            <constraint firstItem="nSN-PG-bC4" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="gB1-sl-gSW"/>
+                            <constraint firstItem="nSN-PG-bC4" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="4Xt-Ew-WVl"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="nSN-PG-bC4" secondAttribute="trailing" constant="8" id="Kge-Bx-BPj"/>
+                            <constraint firstItem="nSN-PG-bC4" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="qiY-6e-alJ"/>
+                            <constraint firstItem="nSN-PG-bC4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="8" id="rNM-f8-dvA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ebM-fd-234"/>
