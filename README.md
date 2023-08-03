@@ -6,4 +6,3 @@
 <img src="https://github.com/dionyysus/movieAppList/assets/59100182/34f5e8f6-e84a-42a6-8df9-18206197031f" width="200">
 <img src="https://github.com/dionyysus/movieAppList/assets/59100182/cbf3b79e-9a47-4f1c-aec3-26a531a9b8b0" width="200">
 <img src="https://github.com/dionyysus/movieAppList/assets/59100182/ba949c9b-0823-4ab9-a34d-c657d266684b" width="200">
-<img src="https://github.com/dionyysus/SwiftJourney/assets/59100182/1ced6c11-1181-465b-8c4d-bdee392bc631" width="200">
