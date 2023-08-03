@@ -1,9 +1,9 @@
 # movieAppList
 
 ## My Movie App ✨🤍🎬🍿
-<img src="https://github.com/dionyysus/SwiftJourney/assets/59100182/a3436b4d-bb05-4320-bcc6-20228c874080" width="200">
-<img src="https://github.com/dionyysus/SwiftJourney/assets/59100182/d59c7db8-d1e9-4347-b112-5f6b73809c7e" width="200">
-<img src="https://github.com/dionyysus/SwiftJourney/assets/59100182/af931e20-1192-4cfa-9f4b-697e25d6c535" width="200">
-<img src="https://github.com/dionyysus/SwiftJourney/assets/59100182/a13ff54e-8a59-4116-aa9c-ee0ab954ab72" width="200">
-<img src="https://github.com/dionyysus/SwiftJourney/assets/59100182/aa35aad1-e9ca-4777-b19e-fe46b0bf1267" width="200">
-<img src="https://github.com/dionyysus/SwiftJourney/assets/59100182/1ced6c11-1181-465b-8c4d-bdee392bc631" width="200">
+<img src="https://github.com/dionyysus/movieAppList/assets/59100182/fc5792c8-cb63-4ce0-a726-f56ba8954579" width="200">
+<img src="https://github.com/dionyysus/movieAppList/assets/59100182/87ba937f-9aa5-4505-9005-9ec101d268eb" width="200">
+<img src="https://github.com/dionyysus/movieAppList/assets/59100182/34f5e8f6-e84a-42a6-8df9-18206197031f" width="200">
+<img src="https://github.com/dionyysus/movieAppList/assets/59100182/e736b100-fbaa-4e70-b2a1-79bf06a28386" width="200">
+<img src="https://github.com/dionyysus/movieAppList/assets/59100182/ba949c9b-0823-4ab9-a34d-c657d266684b" width="200">
+<img src="https://github.com/dionyysus/movieAppList/assets/59100182/562cda43-aec1-4e80-8f41-df2cd815e1ce" width="200">
