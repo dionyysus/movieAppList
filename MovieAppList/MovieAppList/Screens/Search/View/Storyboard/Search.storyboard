@@ -79,6 +79,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="movieCollectionView" destination="6oO-wA-p4e" id="rO9-tN-f3W"/>
+                        <outlet property="searchView" destination="ItR-bu-d47" id="ohL-58-Kw5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r9Z-b5-kBY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

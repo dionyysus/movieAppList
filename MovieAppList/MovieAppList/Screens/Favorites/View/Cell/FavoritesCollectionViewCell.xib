@@ -30,7 +30,7 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vhs-AX-FIv">
                                 <rect key="frame" x="15" y="157.33333333333334" width="354" height="61.666666666666657"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="v90-Hd-SMd">
-                                    <rect key="frame" x="0.0" y="0.0" width="354" height="61.666666666666657"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="354" height="62"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5AC-6C-I26">

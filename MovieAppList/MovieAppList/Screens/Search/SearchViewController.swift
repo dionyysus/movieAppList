@@ -11,6 +11,8 @@ class SearchViewController: UIViewController{
     
     @IBOutlet weak var movieCollectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchView: UIView!
+    
     var searching = false
     private var viewModel: SearchViewModel?
     private var moviess = [Movie]()
@@ -76,6 +78,13 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout{
         let widthPerItem = collectionView.frame.width / 1 - gridLayout.minimumInteritemSpacing
         return CGSize(width:widthPerItem, height:240)
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10.0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10.0
+    }
+    
 }
 extension SearchViewController: UICollectionViewDataSource{
     //  MARK: MOVIE COLLECTION DATA SOURCE CELL COUNT

@@ -35,7 +35,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             self?.moviesCollectionView.reloadData()
             self?.categoryCollectionView.reloadData()
         }
-
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 10
@@ -52,24 +52,20 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let gridLayout = collectionViewLayout as! UICollectionViewFlowLayout
         let widthPerItem = collectionView.frame.width / 1 - gridLayout.minimumInteritemSpacing
-        movie layer.shadowColor = UIColor.black.cgColor
-        categoryCell.categoryView.layer.shadowOpacity = 1
-        categoryCell.categoryView.layer.shadowOffset = .zero
-        categoryCell.categoryView.layer.shadowRadius = 4
         return CGSize(width:widthPerItem, height:240)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-            if collectionView == categoryCollectionView {
-                return 0.0
-            }
-            return 10.0
+        if collectionView == categoryCollectionView {
+            return 0.0
         }
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-            if collectionView == categoryCollectionView {
-                return 0.0
-            }
-            return 10.0
+        return 10.0
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if collectionView == categoryCollectionView {
+            return 0.0
         }
+        return 10.0
+    }
 }
 extension HomeViewController: UICollectionViewDataSource {
     //  MARK: MOVIE COLLECTION DATA SOURCE CELL COUNT
