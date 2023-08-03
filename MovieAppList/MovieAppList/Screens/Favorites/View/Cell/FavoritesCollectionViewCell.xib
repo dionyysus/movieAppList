@@ -23,10 +23,6 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie" translatesAutoresizingMaskIntoConstraints="NO" id="25H-Bw-fYp">
                                 <rect key="frame" x="0.0" y="0.0" width="384" height="234"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="384" id="bsl-eM-hTu"/>
-                                    <constraint firstAttribute="height" constant="234" id="uXX-I0-Zc6"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
                                 </userDefinedRuntimeAttributes>

@@ -134,6 +134,7 @@
                 <outlet property="movieCategoryNameLabel" destination="eeO-UX-t2h" id="n49-sG-7aP"/>
                 <outlet property="movieImageView" destination="7LL-p2-Anj" id="g8z-wf-w8I"/>
                 <outlet property="movieNameLabel" destination="m2F-YS-Es8" id="9dx-rN-bZQ"/>
+                <outlet property="movieView" destination="LNp-i7-rLy" id="34A-u0-CKc"/>
                 <outlet property="movieVoteLabel" destination="1iH-QL-X4k" id="NUi-sz-aee"/>
             </connections>
             <point key="canvasLocation" x="212.19512195121951" y="18.8135593220339"/>

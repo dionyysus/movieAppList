@@ -15,6 +15,7 @@ class MoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var movieNameLabel: UILabel!
     @IBOutlet weak var movieVoteLabel: UILabel!
     @IBOutlet weak var movieCategoryNameLabel: UILabel!
+    @IBOutlet weak var movieView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

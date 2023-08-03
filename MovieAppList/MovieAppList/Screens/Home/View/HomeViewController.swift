@@ -46,13 +46,16 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout{
     
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let gridLayout = collectionViewLayout as! UICollectionViewFlowLayout
         let widthPerItem = collectionView.frame.width / 1 - gridLayout.minimumInteritemSpacing
+        movie layer.shadowColor = UIColor.black.cgColor
+        categoryCell.categoryView.layer.shadowOpacity = 1
+        categoryCell.categoryView.layer.shadowOffset = .zero
+        categoryCell.categoryView.layer.shadowRadius = 4
         return CGSize(width:widthPerItem, height:240)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

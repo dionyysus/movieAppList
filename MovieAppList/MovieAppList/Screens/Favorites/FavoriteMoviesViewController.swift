@@ -45,6 +45,12 @@ class FavoriteMoviesViewController: UIViewController {
         viewModel?.fetchGenres { [weak self] in
             self?.favoriteMoviesCollectionView.reloadData()
         }
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        favoriteMoviesCollectionView.setCollectionViewLayout(layout, animated: true)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         favoriteMoviesCollectionView.reloadData()
@@ -60,6 +66,28 @@ class FavoriteMoviesViewController: UIViewController {
         favoriteLabel.layer.borderWidth = 3.0
     }
     
+   
+    
+}
+
+extension FavoriteMoviesViewController: UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let gridLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let widthPerItem = collectionView.frame.width / 1 - gridLayout.minimumInteritemSpacing
+        return CGSize(width:widthPerItem, height:240)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+           
+            return 10.0
+        }
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+          
+            return 10.0
+        }
 }
 
 extension FavoriteMoviesViewController: UICollectionViewDataSource{
