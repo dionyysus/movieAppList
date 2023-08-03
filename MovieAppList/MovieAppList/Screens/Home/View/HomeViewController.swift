@@ -134,14 +134,15 @@ extension HomeViewController: UICollectionViewDataSource {
             categoryCell.categoryNameLabel.text = viewModel?.genres?[indexPath.row].name
             
             if selectedCategories.contains(viewModel?.genres?[indexPath.row].id ?? 0) {
-                categoryCell.categoryView.backgroundColor = UIColor(red: 153 / 255.0, green: 255 / 255.0, blue: 153 / 255.0, alpha: 1.0)
+                categoryCell.categoryView.backgroundColor = UIColor(red: 142 / 255.0, green: 172 / 255.0, blue: 80 / 255.0, alpha: 1.0)
             } else {
-                categoryCell.categoryView.backgroundColor = UIColor(red: 255 / 255.0, green: 153 / 255.0, blue: 255 / 255.0, alpha: 1.0)
-                categoryCell.categoryView.layer.shadowColor = UIColor.black.cgColor
+                categoryCell.categoryView.backgroundColor = UIColor(red: 23 / 255.0, green: 89 / 255.0, blue: 74 / 255.0, alpha: 1.0)
+                categoryCell.categoryView.layer.shadowColor = UIColor.darkGray.cgColor
                 categoryCell.categoryView.layer.shadowOpacity = 1
                 categoryCell.categoryView.layer.shadowOffset = .zero
                 categoryCell.categoryView.layer.shadowRadius = 4
             }
+            categoryCell.categoryView.layer.cornerRadius = 10
             return categoryCell
         }
         return UICollectionViewCell()
