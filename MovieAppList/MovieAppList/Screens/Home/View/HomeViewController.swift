@@ -134,9 +134,9 @@ extension HomeViewController: UICollectionViewDataSource {
             categoryCell.categoryNameLabel.text = viewModel?.genres?[indexPath.row].name
             
             if selectedCategories.contains(viewModel?.genres?[indexPath.row].id ?? 0) {
-                categoryCell.categoryView.backgroundColor = UIColor(red: 142 / 255.0, green: 172 / 255.0, blue: 80 / 255.0, alpha: 1.0)
+                categoryCell.categoryView.backgroundColor = UIColor(red: 79 / 255.0, green: 192 / 255.0, blue: 208 / 255.0, alpha: 1.0)
             } else {
-                categoryCell.categoryView.backgroundColor = UIColor(red: 23 / 255.0, green: 89 / 255.0, blue: 74 / 255.0, alpha: 1.0)
+                categoryCell.categoryView.backgroundColor = UIColor(red: 22 / 255.0, green: 75 / 255.0, blue: 96 / 255.0, alpha: 1.0)
                 categoryCell.categoryView.layer.shadowColor = UIColor.darkGray.cgColor
                 categoryCell.categoryView.layer.shadowOpacity = 1
                 categoryCell.categoryView.layer.shadowOffset = .zero
