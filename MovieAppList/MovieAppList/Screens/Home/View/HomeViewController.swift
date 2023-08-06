@@ -72,7 +72,6 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         if collectionView == moviesCollectionView {
-            
             if selectedCategories.isEmpty {
                 return viewModel?.movies?.count ?? 0
             } else {
@@ -80,7 +79,8 @@ extension HomeViewController: UICollectionViewDataSource {
                     movie.genreIDS.contains(where: { selectedCategories.contains($0 ?? 0) })
                 }.count ?? 0
             }
-        } else if collectionView == categoryCollectionView {
+        }
+        else if collectionView == categoryCollectionView {
             return viewModel?.genres?.count ?? 0
         } else {
             return 0
