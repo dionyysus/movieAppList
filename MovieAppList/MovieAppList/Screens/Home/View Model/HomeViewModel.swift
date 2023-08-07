@@ -21,7 +21,6 @@ class HomeViewModel {
     
     func fetchMovies(completion: @escaping () -> Void) {
         APIManager.shared.execute(url: APIManager.shared.apiURL) { (data: MovieResponse?) in
-            
             self.movies = data?.results ?? []
             self.categoryMovies = data?.results ?? []
             DispatchQueue.main.async {

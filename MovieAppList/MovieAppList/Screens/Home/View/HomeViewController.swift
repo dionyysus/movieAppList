@@ -115,8 +115,6 @@ extension HomeViewController: UICollectionViewDataSource {
             if let posterPath = movie?.posterPath,
                let imgUrl = URL(string: "\(APIManager.shared.imgUrl + posterPath)") {
                 cell.movieImageView.loadImg(url: imgUrl)
-            } else {
-                cell.movieImageView.image = UIImage(named: "default_poster")
             }
             
             let genreIDs = movie?.genreIDS
@@ -169,10 +167,9 @@ extension HomeViewController: UICollectionViewDelegate {
                 gotoDetailController.prepare(movie: selectedMovie, genreName: genreName)
                 navigationController?.pushViewController(gotoDetailController, animated: true)
             }
-            
             return
-            //   MARK: CATEGORY COLLECTION DELEGATE
         }
+        //   MARK: CATEGORY COLLECTION DELEGATE
         else if collectionView == categoryCollectionView {
             let selectedCategoryId = viewModel?.genres?[indexPath.row].id ?? 0
             if selectedCategories.contains(selectedCategoryId) {
