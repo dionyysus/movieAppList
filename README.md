@@ -1,7 +1,6 @@
 # movieAppList
 
 ## My Movie App ✨🤍🎬🍿
-<img src="https://github.com/dionyysus/ble-example/assets/59100182/138082e3-5a78-4a88-978e-676ea362202c" width="200">
 <img src="https://github.com/dionyysus/movieAppList/assets/59100182/32c90385-3073-4837-abf7-02c3329455a3" width="200">
 <img src="https://github.com/dionyysus/movieAppList/assets/59100182/87ba937f-9aa5-4505-9005-9ec101d268eb" width="200">
 <img src="https://github.com/dionyysus/movieAppList/assets/59100182/34f5e8f6-e84a-42a6-8df9-18206197031f" width="200">
